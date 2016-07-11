@@ -1,0 +1,31 @@
+<%= form_for @product do |f| %>
+  <fieldset>
+    <%= f.label :brand%>
+    <%= f.text_field :brand %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :model_number%>
+    <%= f.text_field :model_num %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :price%>
+    <%= f.text_field :price %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :number_of_pieces%>
+    <%= f.text_field :num_of_pieces %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :color%>
+    <%= f.text_field :color %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :manufactured_date%>
+    <%= f.text_field :mfg_date %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :image%>
+    <%= f.text_field :image %>
+  </fieldset>
+  <%= f.submit %>
+  <% end %>

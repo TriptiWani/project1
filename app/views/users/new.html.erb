@@ -1,0 +1,54 @@
+<h1>Sign In</h1>
+<% if @user.errors %>
+  <%@user.errors.full_messages.each do |error| %>
+    <li> <%= error %></li>
+  <% end %>
+<% end %>
+<%= form_for @user do |f| %>
+  <fieldset>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :last_name%>
+    <%= f.text_field :last_name%>
+  </fieldset>
+  <fieldset>
+    <%= f.label :email%>
+    <%= f.text_field :email%>
+  </fieldset>
+  <fieldset>
+    <%= f.label :dob%>
+    <%= f.text_field :dob, type: :date%>
+  </fieldset>
+  <!-- <fieldset>
+    <%= f.label :gender%>
+     <%= f.text_field :gender%>
+    <%= f.select :gender, ['M','F'],:include_blank => true%>
+  </fieldset> -->
+  <fieldset>
+  <%= f.label :gender%>
+  <%= f.label :m %>
+  <%= radio_button :user, :gender, "M"%>
+  <%= f.label :f %>
+  <%= radio_button :user, :gender, "F"%>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label:password %>
+    <%= f.password_field :password%>
+  </fieldset>
+  <fieldset>
+    <%= f.label :retype_password %>
+    <%= f.password_field :password_confirmation%>
+  </fieldset>
+  <fieldset>
+    <%= f.label :phone_number%>
+    <%= f.text_field :phone_number%>
+  </fieldset>
+  <fieldset>
+    <%= f.label :address%>
+    <%= f.text_field :address%>
+  </fieldset>
+  <%= f.submit %>
+  <% end %>

@@ -1,0 +1,32 @@
+<h1>User Details</h1>
+<table>
+  <tr>
+    <%= image_tag @user.image ,:class => 'profile_image'%>
+  </tr>
+  <tr>
+    <td>Name </td>
+    <td> <%= @user.first_name.concat(' '.concat(@user.last_name)) %></td>
+  </tr>
+  <tr>
+    <td>Email id </td>
+    <td> <%= @user.email %></td>
+  </tr>
+  <tr>
+    <td>Date of birth </td>
+    <td> <%= @user.dob.strftime '%B %e, %Y' %></td>
+  </tr>
+  <tr>
+    <td> Gender</td>
+    <td> <%= @user.gender %></td>
+  </tr>
+  <tr>
+    <td> Phone Number</td>
+    <td> <%= number_to_phone(@user.phone_number) %></td>
+  </tr>
+  <tr>
+    <td>Address </td>
+    <td> <%= @user.address %></td>
+  </tr>
+</table>
+<%= link_to 'Edit User' , edit_user_path %>
+<%= link_to 'Delete user', user_path, :method => 'delete' %>

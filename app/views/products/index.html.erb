@@ -1,0 +1,8 @@
+<h1>Products</h1>
+<ol>
+  <% @products.each do |product| %>
+    <li>
+        <%= link_to product.model_num , product_path(product[:id]) %>
+    </li>
+  <% end %>
+</ol>

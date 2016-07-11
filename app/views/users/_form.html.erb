@@ -1,0 +1,35 @@
+<%= form_for @user do |f| %>
+  <fieldset>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :"Date of Birth" %>
+    <%= f.text_field :dob %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :gender %>
+    <%= f.text_field :gender %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :image %>
+    <%= f.text_field :image %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </fieldset>
+  <%= f.submit %>
+  <% end %>

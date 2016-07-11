@@ -1,0 +1,27 @@
+<%= form_for @order do |f| %>
+  <fieldset>
+    <%= f.label :category%>
+    <%= f.text_field :category %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :model_number%>
+    <%= f.text_field :model %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :quantity%>
+    <%= f.text_field :quantity %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :color%>
+    <%= f.text_field :color %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :brand%>
+    <%= f.text_field :brand %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :mode_of_payment%>
+    <%= f.text_field :payment_method %>
+  </fieldset>
+  <%= f.submit %>
+  <% end %>

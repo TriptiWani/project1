@@ -1,0 +1,3 @@
+class Handset < Product
+
+end

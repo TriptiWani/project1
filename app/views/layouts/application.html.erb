@@ -7,7 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav>
+    <%= link_to 'Home',root_path %>
+    <% if @current_user.present? %>
+      <% if @current_user.admin %>
+        <%= link_to 'All Users' ,users_path  %>
+        <%= link_to 'Manage Inventory',manage_products_path  %>
+        <div>
+          <%= link_to 'Order List' , orders_path %>
+        </div>
+      <% end %>
+      <%= "Welcome #{ @current_user.first_name} #{ @current_user.last_name}" %>
+        <div>
+          <%= image_tag @current_user.image,:class => 'display' %>
+        </div>
+        <div>
+          <%= link_to 'View Products' , products_path %>
+        </div>
+        <div>
+          <%= link_to 'Place an order' , new_order_path %>
+        </div>
+        <div class="my_nav">
+        <%= link_to "My Profile", user_path(@current_user.id) %>
+        <%= link_to "Logout" , login_path , :method => :delete%>
+      </div>
 
+    <% else %>
+      <%= link_to 'Sign In' , new_user_path %>
+      <%= link_to 'Log In',login_path %>
+    <% end %>
+  </nav>
 <%= yield %>
 
 </body>
