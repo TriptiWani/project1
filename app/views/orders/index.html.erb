@@ -1,6 +1,16 @@
 <h1>All Orders</h1>
-<% @orders.each do |order| %>
-  <li>
-    <%= link_to order.id, order %>
-  </li>
-  <% end %>
+<table>
+  <tr>
+    <td>Order Id</td>
+    <td>Order Status</td>
+    <td>User</td>
+  </tr>
+  <% @order_items.each do |order_item| %>
+      <tr>
+        <td><%= link_to order_item.id , order_item %></td>
+        <td><%=  order_item.status %></td>
+        <td><%= order_item.user.email %></td>
+      </tr>
+    <% end %>
+    
+</table>

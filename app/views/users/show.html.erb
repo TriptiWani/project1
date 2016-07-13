@@ -1,7 +1,9 @@
 <h1>User Details</h1>
 <table>
   <tr>
-    <%= image_tag @user.image ,:class => 'profile_image'%>
+    <% if @user.image.present? %>
+    <%= image_tag @user.image ,:class => 'profile_image' %>
+    <% end %>
   </tr>
   <tr>
     <td>Name </td>
@@ -28,5 +30,7 @@
     <td> <%= @user.address %></td>
   </tr>
 </table>
-<%= link_to 'Edit User' , edit_user_path %>
-<%= link_to 'Delete user', user_path, :method => 'delete' %>
+<% if @user.id.eql?@current_user.id %>
+<%= link_to 'Edit Profile' , edit_user_path %>
+<%= link_to 'Delete Profile', user_path, :method => 'delete' %>
+<% end %>

@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20160712043129_add_status_default_to_order.rb

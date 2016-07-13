@@ -1,9 +1,22 @@
 <h1>LineItem#new</h1>
-<%= form_for @line_item do |f| %>
+<fieldset align="center">
+  <p>Model Num : <%= @product.model_num %></p>
+  <p>Color : <%= @product.color %></p>
+</fieldset>
 
+<%= form_for @line_item do |f| %>
+<fieldset>
+  <%= f.label :product_id , :hidden => true%>
+  <%= f.text_field :product_id, :value=>@product.id, :hidden => true  %>
+</fieldset>
+<fieldset>
+  <%= f.label :Order_id , :hidden => true%>
+  <%= f.text_field :order_id, :value=>@order.id  ,:hidden=>true%>
+
+</fieldset>
   <fieldset>
     <%= f.label :quantity%>
     <%= f.text_field :quantity %>
   </fieldset>
   <%= f.submit %>
-  <% end %>
+<% end %>

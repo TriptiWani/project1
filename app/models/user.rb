@@ -25,4 +25,10 @@ class User < ActiveRecord::Base
   validates :phone_number, :presence => true, :length => { :is => 9}
 
   has_many :orders
+
+  def active_order
+    order = self.orders.find_by :status => 'new'
+    order = self.orders.create if order.nil?
+    order
+  end
 end

@@ -35,13 +35,23 @@
 Rails.application.routes.draw do
   root :to => 'pages#home'
   get '/manage_products' => 'pages#products_home'
-  resources :users
+    get '/users/edit' => 'users#edit' , :as => 'edit_user'
+  resources :users, :except => [:edit]
   resources :products
   resources :orders
   resources :line_items
 
+  resources :products do
+    resources :orders do
+      resources :line_items do
+      end
+    end
+  end
+
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
-  get '/line_items/:product_id/new' => 'line_items#new' , :as => 'new_product_line_item_path'
+  get '/line_items/:product_id/new' => 'line_items#new' , :as => 'add_to_order'
+  get '/line_items/:order_id/index' => 'line_items#index', :as => 'order_list'
+  post 'orders/:id/:status' => 'orders#status' , :as => 'order_status'
 end

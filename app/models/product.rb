@@ -11,7 +11,6 @@
 #  mfg_date      :date
 #  image         :text
 #  type          :string
-#  imei          :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

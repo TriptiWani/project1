@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 # Helps heroku follow rails behaviour, its 12 factors thing
 gem 'rails_12factor'
+#cloudinary
+gem "cloudinary"
+#bootstrap
+gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record

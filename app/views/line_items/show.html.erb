@@ -1,8 +1,17 @@
-<h1>LineItem#show</h1>
-<p>Find me in app/views/line_item/show.html.erb</p>
+<h1>Item details</h1>
+
 <p>
-  Quantity : <%= @line_item.quantity %>
+  Order No.: <%= @line_item.order_id %>
 </p>
 <p>
-  Product: <%= @line_item.product_id %>
+  <%= image_tag @line_item.product.image ,:class=>'profile_image' %>
+</p>
+<p>
+  Product: <%= @line_item.product.model_num %>
+</p>
+<p>
+  Color: <%= @line_item.product.color %>
+</p>
+<p>
+  Quantity : <%= @line_item.quantity %>
 </p>

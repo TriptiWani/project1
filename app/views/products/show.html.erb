@@ -31,6 +31,6 @@
     <td> <%= @product.color %></td>
   </tr>
 </table>
-<%= link_to 'Edit Product' , edit_product_path %>
-<%= link_to 'Delete Product', product_path, :method => 'delete' %>
-<%= link_to 'Add to cart' , new_line_item_path %>
+<%= link_to 'Edit Product' , edit_product_path if @current_user.admin?%>
+<%= link_to 'Delete Product', product_path, :method => 'delete' if @current_user.admin? %>
+<%= link_to 'Add to cart' , add_to_order_path(@product.id)  %>

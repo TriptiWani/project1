@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorise_user, :only => [:index]
+  before_action :check_for_user, :only => [:edit, :update]
 
   def index
     @users = User.all
@@ -19,14 +20,18 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by :id => params[:id]
+    @user = @current_user
   end
 
   def update
-    @user = User.find_by :id => params[:id]
-    @user.update user_params
+    @user = @current_user
+    if @user.update user_params
+      redirect_to user_path
+    else
+      render :edit
+    end
 
-    redirect_to user_path
+
   end
 
   def show
@@ -47,6 +52,14 @@ class UsersController < ApplicationController
 
   def authorise_user
     redirect_to root_path unless @current_user.present? && @current_user.admin?
+  end
+
+  def active_order
+    @active_order = Order.find_by :user_id => @current_user.id , :status => 'new'
+  end
+
+  def check_for_user
+    redirect_to new_user_path unless @current_user.present?
   end
 
 end
