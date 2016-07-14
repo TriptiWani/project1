@@ -9,7 +9,7 @@
 
 # users seed data
 #User.destroy_all
-User.create(:first_name=>"Admin",:last_name=>"",:email=>"admin.895.com",:dob=>"1986-11-15", :gender => "F" , :password_digest => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"481254765" , :address => "Canberra" ,:image => "cute_girl.jpg",:admin => true)
+User.create(:first_name=>"Admin",:last_name=>"",:email=>"admin.895.com",:dob=>"1986-11-15", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"481254765" , :address => "Canberra" ,:image => "cute_girl.jpg",:admin => true)
 
 #
 # User.create("first_name"=>"Tripti","last_name"=>"Wani","email"=>"tripti.895.com","dob"=>"1986-11-15", "gender" => "F" , "password_digest" => "chicken" , "phone_number" =>"481254765" , "address" => "Sydney" ,"image" => "cute_girl.jpg","admin" => true)
