@@ -14,7 +14,7 @@ User.destroy_all
 User.create(:first_name=>"Admin",:last_name=>"",:email=>"admin.895@com",:dob=>"1986-11-15", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"481254765" , :address => "Canberra" ,:image => "cute_girl.jpg",:admin => true)
 
 
-User.create(:first_name=>"Tripti",:last_name=>"Wani",:email=>"tripti.895.com",:dob=>"1986-11-15", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"481254765" , :address => "Sydney" ,:image => "cute_girl.jpg","admin" => true)
+User.create(:first_name=>"Tripti",:last_name=>"Wani",:email=>"tripti.895.com",:dob=>"1986-11-15", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"481254765" , :address => "Sydney" ,:image => "cute_girl.jpg")
 User.create(:first_name=>"Lori",:last_name=>"Taulbee",:email=>"lori@ga.com","dob"=>"1986-3-2", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"456456456" , :address => "Dayton" ,:image => "")
 User.create(:first_name=>"Kym",:last_name=>"",:email=>"kym@ga.com","dob"=>"2008-1-2", :gender => "M" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"145234765" , :address => "Sydney" ,:image => "")
 User.create(:first_name=>"Xinwei",:last_name=>"Xang",:email=>"x@ga.com","dob"=>"1975-3-4", :gender => "M" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"678678678" , :address => "new York" ,:image => "")
