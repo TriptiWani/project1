@@ -4,4 +4,8 @@ class PagesController < ApplicationController
 
   def products_home
   end
+
+  def contact
+  end
+
 end

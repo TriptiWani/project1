@@ -35,6 +35,7 @@ class OrdersController < ApplicationController
   end
 
   def status
+    @admin = User.find_by(:admin => true)
     action = params[:status]
     @order = Order.find_by :id => params[:id]
     if @order.line_items.any?
@@ -47,11 +48,11 @@ class OrdersController < ApplicationController
           @order.status = 'rejected'
         end
         @order.save
-        UserMailer.order_status(@order).deliver_now
+        UserMailer.order_status(@order,@admin).deliver_now
       else
         @order.status = action
         @order.save
-        UserMailer.order_status(@order).deliver_now
+        UserMailer.order_status(@order,@admin).deliver_now
       end
     else
       @message = 'No items in the order'

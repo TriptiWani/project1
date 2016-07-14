@@ -5,28 +5,44 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= cloudinary_js_config %>
 </head>
 <header class="header">
 Inventory Management
 </header>
 <body>
   <nav>
-    <div>
-    <%= link_to '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'.html_safe ,root_path %>
+    <ul class="nav nav-tabs options">
+      <li role="presentation" class="<%= 'active' if params[:controller] == 'controller1' %>">
+        <%= link_to 'Home <span class="glyphicon glyphicon-home" aria-hidden="true"></span>'.html_safe ,root_path %>
+      </li>
+      <li role="presentation" class="<%= 'active' if params[:controller] == 'controller2' %>">
+        <%= link_to 'Contact Us <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>'.html_safe ,contact_us_path %>
+      </li>
+      <% if @current_user.nil? %>
+        <li role="presentation" class="<%= 'active' if params[:controller] == 'controller3' %>">
+          <%= link_to 'Create account <span class="glyphicon glyphicon-user" aria-hidden="true"></span>'.html_safe , new_user_path %>
+        </li>
+        <li role="presentation" class="<%= 'active' if params[:controller] == 'controller4' %>">
+          <%= link_to 'Log In <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>'.html_safe,login_path %>
+        </li>
+      <% end %>
     <% if @current_user.present? %>
       <% if @current_user.admin %>
-        <ul class="nav nav-pills" role="tablist">
-          <li role="presentation" class="active menu">
-            <%= link_to "Users<span class='badge'>#{ User.where(:active=>'true').count }</span>".html_safe , users_path %>
-          </li>
+        <div class="options col-xs-offset-2">
+          <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" class="active menu">
+              <%= link_to "Users<span class='badge'>#{ User.where(:active=>'true').count }</span>".html_safe , users_path %>
+            </li>
 
-          <li role="presentation" class="active menu">
-            <%= link_to "Orders<span class='badge'>#{ Order.all.count }</span>".html_safe , orders_path%>
-          </li>
-          <li>
-            <%= link_to 'Manage Inventory',manage_products_path  %>
-          </li>
-        </ul>
+            <li role="presentation" class="active menu">
+              <%= link_to "Orders<span class='badge'>#{ Order.all.count }</span>".html_safe , orders_path%>
+            </li>
+            <li>
+              <%= link_to 'Manage Inventory',manage_products_path  %>
+            </li>
+          </ul>
+        </div>
       <% else %>
         <%= link_to 'Orders' , orders_path %>
       <% end %>
@@ -62,10 +78,6 @@ Inventory Management
         </div>
         <%= link_to 'Logout<span class="glyphicon glyphicon-off" aria-hidden="true"></span>'.html_safe , login_path , :method => :delete%>
       </div>
-
-    <% else %>
-      <%= link_to 'Create account' , new_user_path %>
-      <%= link_to 'Log In',login_path %>
     <% end %>
   </nav>
 

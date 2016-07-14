@@ -1,12 +1,14 @@
 class UserMailer < ApplicationMailer
-  def welcome(user)
+  def welcome(user,admin)
     @user = user
-    mail( :to => @user.email , :subject=> "Welcome #{ @user.first_name}", :cc => "tripti.895@gmail.com" )
+    @admin = admin
+    mail( :to => @user.email , :subject=> "Welcome #{ @user.first_name}", :cc => @admin.email )
   end
 
-  def order_status(order)
+  def order_status(order,admin)
     @order = order
-    mail( :to => @order.user.email , :subject=> "Status Change for #{ @order.id}", :cc => "tripti.895@gmail.com" )
+    @admin = admin
+    mail( :to => @order.user.email , :subject=> "Status Change for #{ @order.id}", :cc => @admin.email  )
   end
 
 end

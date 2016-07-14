@@ -11,9 +11,14 @@ class UsersController < ApplicationController
   end
 
   def create
+    @admin = User.find_by(:admin => true)
     @user = User.new user_params
+    if (params[:file]).present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @user.image = req["url"]
+    end
     if @user.save
-      UserMailer.welcome(@user).deliver_now
+      UserMailer.welcome(@user,@admin).deliver_now
       session[:user_id] = @user.id
 
       redirect_to root_path
@@ -28,6 +33,10 @@ class UsersController < ApplicationController
 
   def update
     @user = @current_user
+    if (params[:file]).present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @user.image = req["url"]
+    end
     if @user.update user_params
       redirect_to user_path
     else

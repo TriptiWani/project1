@@ -1,4 +1,4 @@
-<%= form_for @product do |f| %>
+<%= form_for @product,:html => {:multipart => true}  do |f| %>
   <fieldset>
     <%= f.label :brand%>
     <%= f.text_field :brand %>
@@ -24,8 +24,8 @@
     <%= f.text_field :mfg_date %>
   </fieldset>
   <fieldset>
-    <%= f.label :image%>
-    <%= f.text_field :image %>
+    <%= f.label :image %>
+    <%= cl_image_upload_tag :image %>
   </fieldset>
   <%= f.submit %>
   <% end %>

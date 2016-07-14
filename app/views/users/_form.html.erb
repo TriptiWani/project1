@@ -5,38 +5,40 @@
     <% end %>
   </ol>
 <% end %>
-<%= form_for @user do |f| %>
-  <fieldset>
+<div class="col-xs-offset-4">
+<%= form_for @user,:html => {:multipart => true} do |f| %>
+  <fieldset class="col-xs-offset-1">
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
   </fieldset>
-  <fieldset>
+  <fieldset class="col-xs-offset-1">
     <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   </fieldset>
-  <fieldset>
+  <fieldset class="col-xs-offset-1">
     <%= f.label :email %>
     <%= f.text_field :email %>
   </fieldset>
-  <fieldset>
+  <fieldset class="col-xs-offset-1">
     <%= f.label :"Date of Birth" %>
     <%= f.text_field :dob %>
   </fieldset>
-  <fieldset>
+  <fieldset class="col-xs-offset-1">
     <%= f.label :gender %>
     <%= f.text_field :gender %>
   </fieldset>
-  <fieldset>
+  <fieldset class="col-xs-offset-1">
     <%= f.label :image %>
-    <%= f.text_field :image %>
+    <%= cl_image_upload_tag :image %>
   </fieldset>
-  <fieldset>
+  <fieldset class="col-xs-offset-1">
     <%= f.label :phone_number %>
     <%= f.text_field :phone_number %>
   </fieldset>
-  <fieldset>
+  <fieldset class="col-xs-offset-1">
     <%= f.label :address %>
     <%= f.text_field :address %>
   </fieldset>
-  <%= f.submit %>
+  <%= f.submit :class=> 'col-xs-offset-2'%>
   <% end %>
+</div>

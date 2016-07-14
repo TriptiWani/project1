@@ -5,8 +5,12 @@
 <% if @order.status.eql?'placed' %>
   <p>
     You have successfully placed the order.
-    Order number: <%= @order.id %>
-    Status: <%= @order.status %>
+    <p>
+      Order number: <%= @order.id %>
+    </p>
+    <p>
+      Status: <%= @order.status %>
+    </p>
   </p>
 <% else %>
   <p>

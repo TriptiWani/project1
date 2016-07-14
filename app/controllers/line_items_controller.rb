@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   before_action :check_user
-  
+
   def total_price
     unit_price * quantity
   end
@@ -30,16 +30,7 @@ class LineItemsController < ApplicationController
     redirect_to order_list_path(@order.id)
   end
 
-  # def create
-  #
-  #  @line_item = @order.line_items.new(line_item_params)
-  #  @order.save
-  #  session[:order_id] = @order.id
-  #
-  # end
-
   def edit
-
 
   end
 

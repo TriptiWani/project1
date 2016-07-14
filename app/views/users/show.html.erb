@@ -3,7 +3,7 @@
   <table class="table">
     <tr>
       <% if @user.image.present? %>
-      <%= image_tag @user.image ,:class => 'profile_image' %>
+      <%= cl_image_tag @user.image ,:class => 'profile_image' %>
       <% end %>
     </tr>
     <tr>
