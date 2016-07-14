@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authorise_user, :only => [:index]
-  before_action :check_for_user, :only => [:edit, :update]
+  before_action :check_for_user
+  # , :only => [:edit, :update]
 
   def index
     @users = User.all
@@ -65,6 +66,7 @@ class UsersController < ApplicationController
   end
 
   def check_for_user
+    flash[:notice] = 'Please login' unless @current_user.present?
     redirect_to new_user_path unless @current_user.present?
   end
 

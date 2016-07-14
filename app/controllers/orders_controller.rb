@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :check_user
 
   def index
     if @current_user.admin?
@@ -112,5 +113,11 @@ class OrdersController < ApplicationController
     end
 
   end
+
+  def check_user
+    flash[:notice] = 'Please login' unless @current_user.present?
+    redirect_to root_path unless @current_user.present?
+  end
+
 
 end

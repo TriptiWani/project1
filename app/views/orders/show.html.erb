@@ -1,3 +1,5 @@
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
 <h1>Orders details</h1>
 <% if @order.errors %>
   <%@order.errors.full_messages.each do |error| %>
@@ -57,7 +59,7 @@
   <div>
 
     <div class="table_display">
-      <% if @current_user.admin? %>
+      <% if ((@current_user.present?) && (@current_user.admin?)) %>
         <%= link_to 'User Details' , @order.user %>
         <% else %>
         <%= link_to 'My Details' , @order.user %>
@@ -65,17 +67,27 @@
     </div>
 
   </div>
-  <% if ((@order.status.eql?'new') && (@current_user.admin.eql?false)) %>
-    <div class="mode_of_payment order_details">
-      <p> Mode of payment: </p>
-      <%= radio_button_tag(:payment_method, "Credit") %>
-      <%= label_tag(:payment_method_credit, "Credit") %>
-      <%= radio_button_tag(:payment_method, "Net Banking") %>
-      <%= label_tag(:payment_method_cash, "Net Banking") %>
+  <% if ((@order.status.eql?'new') && (@current_user.present?) && (@current_user.admin.eql?false))  %>
+    <div class="mode_of_payment">
+      <%#= radio_button_tag(:payment_method, "Credit") %>
+      <%#= label_tag(:payment_method_credit, "Credit") %>
+      <%#= radio_button_tag(:payment_method, "Net Banking") %>
+      <%#= label_tag(:payment_method_cash, "Net Banking") %>
+      <form action="/charge" method="POST" class="order_details">
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+          data-amount="<%= (@order.total_price)*100  %>"
+          data-name="Hello <%= @order.user.first_name %>"
+          data-description="Pay Now"
+          data-image="/img/documentation/checkout/marketplace.png"
+          data-locale="auto">
+        </script>
+      </form>
     </div>
     <%= button_to 'Confirm' ,order_status_path(:status=>'placed')  %>
   <% end %>
-  <% if @current_user.admin? %>
+  <% if ((@current_user.present?) && (@current_user.admin?)) %>
     <div>
       <%= button_to 'Approve', order_status_path(:status=>'approved')%>
       <%= button_to 'Reject', order_status_path(:status=>'cancelled')%>

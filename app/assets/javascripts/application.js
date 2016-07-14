@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+
+Stripe.card.createToken({
+  number: $('.card-number').val(),
+  cvc: $('.card-cvc').val(),
+  exp_month: $('.card-expiry-month').val(),
+  exp_year: $('.card-expiry-year').val()
+}, stripeResponseHandler);

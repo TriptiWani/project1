@@ -1,5 +1,6 @@
 class LineItemsController < ApplicationController
-
+  before_action :check_user
+  
   def total_price
     unit_price * quantity
   end
@@ -76,6 +77,11 @@ class LineItemsController < ApplicationController
 
   def subtotal(quantity,price)
     subtotal = (quantity.to_f)*(price.to_f)
+  end
+
+  def check_user
+    flash[:notice] = 'Please login' unless @current_user.present?
+    redirect_to root_path unless @current_user.present?
   end
 
 end
