@@ -14,27 +14,20 @@ This is my Project One on **Inventory Management** as part of my Web Development
 - Cloudinary
 - SendGrid
 - Heroku
+- Stripe
 
 ## Features:
 
-### Pick Avtar:
-The human players get an opportunity to choose avtar based on the mood from the below options:
-- Drink Smiley
-- Eat Smiley
-- Tick
-- Cross
-- Lips
-- Moustache
-- Tom
-- Jerry
+#### Browse the site as guest.
+#### Create an account for new user.
+#### Login for an existing user.
+#### You can browse the site, but to place an order you must login in.
+#### Check all your orders with their last updated status, and check the lineitems as well.
+#### Once the order is placed, admin can either Approve or Reject the order.
+#### The quantity in the warehouse is updated after 'approving' the order.
+#### Delete the existing account, if user wishes to:
+This will just inactivate the account
 
-If the player does not wish to choose an avtar, then by default *Green* and *Blue* themes will be selected.
-
-### New/Continue:
-The players have an option to 'Continue' the current game or start a 'New' game as per their wish.
-
-### Score:
-The scores of both the players are displayed on the 'Score Board'
 
 ## Nice to have:
 Below listed are the features I would like to implement further to this:

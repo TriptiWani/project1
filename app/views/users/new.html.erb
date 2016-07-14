@@ -1,54 +1,55 @@
 <h1>Create Account</h1>
 <% if @user.errors %>
-  <%@user.errors.full_messages.each do |error| %>
-    <li> <%= error %></li>
-  <% end %>
+<%@user.errors.full_messages.each do |error| %>
+<li>
+    <%= error %></li>
+<% end %>
 <% end %>
 <div class="col-xs-offset-3">
-  <%= form_for @user,:html => {:multipart => true} do |f| %>
+    <%= form_for @user,:html => {:multipart => true} do |f| %>
     <fieldset class="col-xs-offset-1">
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
     </fieldset>
     <fieldset class="col-xs-offset-1">
-      <%= f.label :last_name%>
-      <%= f.text_field :last_name%>
+        <%= f.label :last_name%>
+        <%= f.text_field :last_name%>
     </fieldset>
     <fieldset class="col-xs-offset-1">
-      <%= f.label :email%>
-      <%= f.text_field :email%>
+        <%= f.label :email%>
+        <%= f.text_field :email%>
     </fieldset>
     <fieldset class="col-xs-offset-1">
-      <%= f.label :dob%>
-      <%= f.text_field :dob, type: :date%>
+        <%= f.label :dob%>
+        <%= f.text_field :dob, type: :date%>
     </fieldset>
     <fieldset class="col-xs-offset-1">
-      <%= f.label :gender %>
-      <%= f.label :m ,:class=>"gender_label" %>
-      <%= radio_button :user, :gender, "M"%>
-      <%= f.label :f ,:class=>"gender_label"%>
-      <%= radio_button :user, :gender, "F"%>
+        <%= f.label :gender %>
+        <%= f.label :m ,:class=>"gender_label" %>
+        <%= radio_button :user, :gender, "M"%>
+        <%= f.label :f ,:class=>"gender_label"%>
+        <%= radio_button :user, :gender, "F"%>
     </fieldset>
     <fieldset class="col-xs-offset-1">
-      <%= f.label :image %>
-      <%= cl_image_upload_tag :image ,:class=> 'col-xs-offset-2' %>
+        <%= f.label :image %>
+        <%= cl_image_upload_tag :image ,:class=> 'col-xs-offset-2' %>
     </fieldset>
     <fieldset class="col-xs-offset-1">
-      <%= f.label:password %>
-      <%= f.password_field :password%>
+        <%= f.label:password %>
+        <%= f.password_field :password%>
     </fieldset>
     <fieldset class="col-xs-offset-1">
-      <%= f.label :retype_password %>
-      <%= f.password_field :password_confirmation%>
+        <%= f.label :retype_password %>
+        <%= f.password_field :password_confirmation%>
     </fieldset>
     <fieldset class="col-xs-offset-1">
-      <%= f.label :phone_number%>
-      <%= f.text_field :phone_number%>
+        <%= f.label :phone_number%>
+        <%= f.text_field :phone_number%>
     </fieldset>
     <fieldset class="col-xs-offset-1">
-      <%= f.label :address%>
-      <%= f.text_field :address%>
+        <%= f.label :address%>
+        <%= f.text_field :address%>
     </fieldset>
     <%= f.submit :class=> 'col-xs-offset-4'%>
-  <% end %>
+    <% end %>
 </div>

@@ -1,11 +1,14 @@
-Dear <%= @order.user.first_name %>
+Dear
+<%= @order.user.first_name %>
 
 <% if @order.status.eql?'placed' %>
-You have successfully placed the order.
-Order number: <%= @order.id %>
-Status: <%= @order.status %>
+You have successfully placed the order. Order number:
+<%= @order.id %>
+Status:
+<%= @order.status %>
 <% else %>
-The status of your order number <%= @order.id %> has been changed to <%= @order.status %>.
+The status of your order number
+<%= @order.id %>
+has been changed to
+<%= @order.status %>.
 <% end %>
-
-Let us know if you have any questions.

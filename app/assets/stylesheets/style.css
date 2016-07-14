@@ -1,5 +1,11 @@
 * {
 }
+td {
+  min-width:40px;
+}
+table,tr,td {
+  // border:1px solid black;
+}
 .display {
   width:8%;
   height : 10%;

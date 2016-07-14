@@ -1,46 +1,47 @@
 <% if @user.errors.any? %>
-  <ol>
+<ol>
     <% @user.errors.full_messages.each do |message| %>
-    <li> <%= message %></li>
+    <li>
+        <%= message %></li>
     <% end %>
-  </ol>
+</ol>
 <% end %>
 <div class="col-xs-offset-4">
-<div >
-<%= form_for @user,:html => {:multipart => true} do |f| %>
-  <fieldset>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </fieldset>
-  <fieldset>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </fieldset>
-  <fieldset>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </fieldset>
-  <fieldset>
-    <%= f.label :"Date of Birth" %>
-    <%= f.text_field :dob %>
-  </fieldset>
-  <fieldset>
-    <%= f.label :gender %>
-    <%= f.text_field :gender %>
-  </fieldset>
-  <fieldset>
-    <%= f.label :image %>
-    <%= cl_image_upload_tag :image %>
-  </fieldset>
-  <fieldset>
-    <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
-  </fieldset>
-  <fieldset>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </fieldset>
-  <%= f.submit :class=> 'col-xs-offset-3'%>
-  <% end %>
-</div>
+    <div >
+        <%= form_for @user,:html => {:multipart => true} do |f| %>
+        <fieldset>
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name %>
+        </fieldset>
+        <fieldset>
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name %>
+        </fieldset>
+        <fieldset>
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+        </fieldset>
+        <fieldset>
+            <%= f.label :"Date of Birth" %>
+            <%= f.text_field :dob %>
+        </fieldset>
+        <fieldset>
+            <%= f.label :gender %>
+            <%= f.text_field :gender %>
+        </fieldset>
+        <fieldset>
+            <%= f.label :image %>
+            <%= cl_image_upload_tag :image %>
+        </fieldset>
+        <fieldset>
+            <%= f.label :phone_number %>
+            <%= f.text_field :phone_number %>
+        </fieldset>
+        <fieldset>
+            <%= f.label :address %>
+            <%= f.text_field :address %>
+        </fieldset>
+        <%= f.submit :class=> 'col-xs-offset-3'%>
+        <% end %>
+    </div>
 </div>

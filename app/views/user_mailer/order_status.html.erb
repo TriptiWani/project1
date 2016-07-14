@@ -1,22 +1,28 @@
 <h1>
-  Dear <%= @order.user.first_name %>
+    Dear
+    <%= @order.user.first_name %>
 </h1>
 
 <% if @order.status.eql?'placed' %>
-  <p>
+<p>
     You have successfully placed the order.
     <p>
-      Order number: <%= @order.id %>
+        Order number:
+        <%= @order.id %>
     </p>
     <p>
-      Status: <%= @order.status %>
+        Status:
+        <%= @order.status %>
     </p>
-  </p>
+</p>
 <% else %>
-  <p>
-    The status of your order number <%= @order.id %> has been changed to <%= @order.status %>.
-  </p>
+<p>
+    The status of your order number
+    <%= @order.id %>
+    has been changed to
+    <%= @order.status %>.
+</p>
 <% end %>
 <p>
-  Let us know if you have any questions.
+    Let us know if you have any questions.
 </p>
