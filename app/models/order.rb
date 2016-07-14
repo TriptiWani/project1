@@ -3,8 +3,6 @@
 # Table name: orders
 #
 #  id             :integer          not null, primary key
-#  category       :string
-#  email          :text
 #  status         :string           default("new")
 #  payment_method :string
 #  created_at     :datetime         not null
