@@ -1,17 +1,24 @@
-<h1>Item details</h1>
-
-<p>
-  Order No.: <%= @line_item.order_id %>
-</p>
-<p>
+<div class="panel panel-default table_display">
+  <div class="panel-heading">Item Details</div>
+  <table class="table">
+    <tr>
+      <td>Order Number</td>
+      <td><%= @line_item.order_id %></td>
+    </tr>
+    <tr>
+      <td>Product</td>
+      <td><%= @line_item.product.model_num%></td>
+    </tr>
+    <tr>
+      <td>Color</td>
+      <td><%= @line_item.product.color %></td>
+    </tr>
+    <tr>
+      <td>Quantity</td>
+      <td><%= @line_item.quantity %></td>
+    </tr>
+  </table>
+</div>
+<div class="table_display order_details">
   <%= image_tag @line_item.product.image ,:class=>'profile_image' %>
-</p>
-<p>
-  Product: <%= @line_item.product.model_num %>
-</p>
-<p>
-  Color: <%= @line_item.product.color %>
-</p>
-<p>
-  Quantity : <%= @line_item.quantity %>
-</p>
+</div>

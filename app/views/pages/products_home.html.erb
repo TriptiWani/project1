@@ -1,8 +1,8 @@
-<h1>Manage Inventory</h1>
-
-<p>
-  <%= link_to 'View Inventory List', products_path%>
-</p>
-<p>
-  <%= link_to 'Add Inventory', new_product_path %>
-</p>
+<div class="manage_inventory">
+    <p>
+      <%= link_to '<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Inventory List'.html_safe , products_path%>
+    </p>
+    <p>
+      <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Inventory'.html_safe, new_product_path %>
+    </p>
+</div>

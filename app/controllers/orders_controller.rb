@@ -46,9 +46,11 @@ class OrdersController < ApplicationController
           @order.status = 'rejected'
         end
         @order.save
+        UserMailer.order_status(@order).deliver_now
       else
         @order.status = action
         @order.save
+        UserMailer.order_status(@order).deliver_now
       end
     else
       @message = 'No items in the order'

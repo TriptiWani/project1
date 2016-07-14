@@ -7,36 +7,74 @@
   <%= csrf_meta_tags %>
 </head>
 <header class="header">
-  <span class="glyphicon glyphicon-home" aria-hidden="true"><%= link_to 'Home',root_path %></span>
 Inventory Management
 </header>
 <body>
   <nav>
+    <div>
+    <%= link_to '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>'.html_safe ,root_path %>
     <% if @current_user.present? %>
       <% if @current_user.admin %>
-        <%= link_to 'All Users' ,users_path  %>
-        <%= link_to 'Manage Inventory',manage_products_path  %>
+        <ul class="nav nav-pills" role="tablist">
+          <li role="presentation" class="active menu">
+            <%= link_to "Users<span class='badge'>#{ User.where(:active=>'true').count }</span>".html_safe , users_path %>
+          </li>
+
+          <li role="presentation" class="active menu">
+            <%= link_to "Orders<span class='badge'>#{ Order.all.count }</span>".html_safe , orders_path%>
+          </li>
+          <li>
+            <%= link_to 'Manage Inventory',manage_products_path  %>
+          </li>
+        </ul>
+      <% else %>
+        <%= link_to 'Orders' , orders_path %>
       <% end %>
-      <%= "Welcome #{ @current_user.first_name} #{ @current_user.last_name}" %>
-        <div>
-          <%= image_tag @current_user.image,:class => 'display' %>
-        </div>
-        <div>
-          <%= link_to 'Orders' , orders_path %>
-        </div>
-        <div>
-          <%= link_to 'View Products' , products_path %>
+
+      <div>
+        <p class="welcome">
+        <%= "Welcome #{ @current_user.first_name} #{ @current_user.last_name}" %>
+      </p>
+    </div>
+
+          <% if @current_user.image? %>
+            <%= image_tag @current_user.image,:class => 'display' %>
+          <% end %>
+
         </div>
         <div class="my_nav">
-        <%= link_to "My Profile", user_path(@current_user.id) %>
-        <%= link_to "Logout" , login_path , :method => :delete%>
+        <div class="dropdown profile_dropDown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Profile
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li>
+              <%= link_to "View", user_path(@current_user.id) %>
+            </li>
+            <li>
+              <%= link_to "Edit", edit_user_path(@current_user.id) %>
+            </li>
+            <li>
+              <%= link_to "Delete", user_path(@current_user.id),:method => 'delete', :data => {:confirm => "Are you sure"} %>
+            </li>
+          </ul>
+        </div>
+        <%= link_to 'Logout<span class="glyphicon glyphicon-off" aria-hidden="true"></span>'.html_safe , login_path , :method => :delete%>
       </div>
 
     <% else %>
-      <%= link_to 'Sign In' , new_user_path %>
+      <%= link_to 'Create account' , new_user_path %>
       <%= link_to 'Log In',login_path %>
     <% end %>
   </nav>
+
+  <% if flash[:notice] %>
+  <div class="alert alert-danger order_details" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <%= yield %>
 
 </body>

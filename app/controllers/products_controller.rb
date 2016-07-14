@@ -29,7 +29,11 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    if params[:category]
+      @products = Product.where(:category => params[:category] )
+    else
+      @products = Product.all
+    end
     @line_item = current_order.line_items.new
   end
 

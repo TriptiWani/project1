@@ -11,28 +11,19 @@ class LineItemsController < ApplicationController
   end
 
   def new
-    @line_item  = LineItem.new
-    # @line_item.product_id = params[:product_id]
-    @product = Product.find(params[:product_id])
-    @order = @current_user.active_order
-    # if active_order.present?
-    #   @order = active_order
-    #   @line_item.order_id = @order.id
-    # else
-    #   @order = Order.new
-    # end
+    if @current_user.present?
+      @line_item  = LineItem.new
+      @product = Product.find(params[:product_id])
+      @order = @current_user.active_order
+    else
+      flash[:notice] = 'Please login to add to cart'
+      redirect_to root_path
+    end
   end
 
   def create
     @line_item = LineItem.create line_item_params
     @order = @current_user.active_order
-    # @order.line_items << @line_item
-    # if active_order.present?
-    #   @order = active_order
-    #   @line_item.order_id = @order.id
-    # else
-    #   @order = Order.new
-    # end
     @line_item.sub_total = subtotal(@line_item.quantity,@line_item.product.price.to_f)
     @line_item.save
     redirect_to order_list_path(@order.id)

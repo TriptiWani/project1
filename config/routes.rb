@@ -34,20 +34,14 @@
 
 Rails.application.routes.draw do
   root :to => 'pages#home'
-  get '/manage_products' => 'pages#products_home'
-    get '/users/edit' => 'users#edit' , :as => 'edit_user'
   resources :users, :except => [:edit]
   resources :products
   resources :orders
   resources :line_items
 
-  resources :products do
-    resources :orders do
-      resources :line_items do
-      end
-    end
-  end
-
+  get '/products/index/:category' => 'products#index', :as => 'product_category'
+  get '/manage_products' => 'pages#products_home'
+  get '/users/:id/edit' => 'users#edit' , :as => 'edit_user'
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'

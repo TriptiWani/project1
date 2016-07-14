@@ -5,67 +5,81 @@
   <% end %>
 <% end %>
 <div>
-  <p>
+  <p class="order_details">
     <%= "Order Number:  #{ @order.id }" %>
   </p>
-  <p>
+  <p class="order_details">
     <%= "Order Status:  #{ @order.status }" %>
   </p>
-  <p>
+  <p class="order_details">
     <%= "Mode of payment: #{ @order.payment_method}" if @order.payment_method.present? %>
   </p>
-  <p> Total <%= pluralize(@line_items.count,'item') %> in this order</p>
+  <p class="order_details"> Total <%= pluralize(@line_items.count,'item') %> in this order</p>
 </div>
-<% if @line_items.count.eql?0 %>
-  <%= link_to 'View Products' , products_path %>
-<% else %>
-<table>
-  <tr>
-    <td>S. No</td>
-    <td>Details</td>
-    <td>Quantity</td>
-    <td>Price per Unit</td>
-    <td>Sub Total</td>
-  </tr>
-  <% @line_items.each do |line_item| %>
-    <tr>
-      <td><%= link_to line_item.id,line_item %></td>
-      <td><%= line_item.product.model_num %></td>
-      <td><%= line_item.quantity  %></td>
-      <td><%= number_to_currency line_item.product.price %></td>
-      <td><%= number_to_currency line_item.sub_total %></td>
-    </tr>
-  <% end %>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><%= number_to_currency @order.total_price %></td>
-    </tr>
-
-</table>
-<div>
-  <% if @current_user.admin? %>
-  <%= link_to 'User Details' , @order.user %>
+<div class="order_details">
+  <% if @line_items.count.eql?0 %>
+    <%= link_to 'View Products' , products_path %>
   <% else %>
-  <%= link_to 'My Details' , @order.user %>
-  <% end %>
 </div>
 
+<div class="panel panel-default table_display">
 
-<% if @order.status.eql?'new' %>
-  <div class="mode_of_payment">
-    <p> Mode of payment: </p>
-    <%= radio_button_tag(:payment_method, "Credit") %>
-    <%= label_tag(:payment_method_credit, "Credit") %>
-    <%= radio_button_tag(:payment_method, "Net Banking") %>
-    <%= label_tag(:payment_method_cash, "Net Banking") %>
+  <div class="panel-heading">Order Details</div>
+    <table class="table">
+      <tr>
+        <td>S. No</td>
+        <td>Details</td>
+        <td>Quantity</td>
+        <td>Price per Unit</td>
+        <td>Sub Total</td>
+      </tr>
+      <% i = 1 %>
+      <% @line_items.each do |line_item| %>
+
+        <tr>
+          <td><%= link_to i,line_item %></td>
+          <td><%= line_item.product.model_num %></td>
+          <td><%= line_item.quantity  %></td>
+          <td><%= number_to_currency line_item.product.price %></td>
+          <td><%= number_to_currency line_item.sub_total %></td>
+        </tr>
+        <% i= i+1 %>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total</td>
+        <td><%= number_to_currency @order.total_price %></td>
+      </tr>
+    </table>
   </div>
-  <%= button_to 'Confirm' ,order_status_path(:status=>'placed')  %>
-<% end %>
-<% if @current_user.admin? %>
-  <%= button_to 'Approve', order_status_path(:status=>'approved')%>
-  <%= button_to 'Cancel', order_status_path(:status=>'cancelled')%>
-<% end %>
+  <div>
+
+    <div class="table_display">
+      <% if @current_user.admin? %>
+        <%= link_to 'User Details' , @order.user %>
+        <% else %>
+        <%= link_to 'My Details' , @order.user %>
+      <% end %>
+    </div>
+
+  </div>
+  <% if ((@order.status.eql?'new') && (@current_user.admin.eql?false)) %>
+    <div class="mode_of_payment order_details">
+      <p> Mode of payment: </p>
+      <%= radio_button_tag(:payment_method, "Credit") %>
+      <%= label_tag(:payment_method_credit, "Credit") %>
+      <%= radio_button_tag(:payment_method, "Net Banking") %>
+      <%= label_tag(:payment_method_cash, "Net Banking") %>
+    </div>
+    <%= button_to 'Confirm' ,order_status_path(:status=>'placed')  %>
+  <% end %>
+  <% if @current_user.admin? %>
+    <div>
+      <%= button_to 'Approve', order_status_path(:status=>'approved')%>
+      <%= button_to 'Reject', order_status_path(:status=>'cancelled')%>
+    </div>
+
+  <% end %>
 <% end %>

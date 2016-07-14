@@ -1,9 +1,7 @@
-<h1>Products</h1>
-
-<ol>
+<ul>
   <% @products.each do |product| %>
     <li>
-        <%= link_to product.model_num , product_path(product[:id]) %>
+        <%= link_to image_tag(product.image, :class => 'product_display') , product_path(product[:id]) %>
     </li>
   <% end %>
-</ol>
+</ul>

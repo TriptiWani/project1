@@ -15,6 +15,7 @@
 #  updated_at      :datetime         not null
 #  admin           :boolean          default(FALSE)
 #  image           :text
+#  active          :boolean          default(TRUE)
 #
 
 class User < ActiveRecord::Base
