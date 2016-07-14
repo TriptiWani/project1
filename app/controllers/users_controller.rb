@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.welcome(@user,@admin).deliver_now
       session[:user_id] = @user.id
-
+      flash[:notice] = 'Account successfully created' 
       redirect_to root_path
     else
       render :new

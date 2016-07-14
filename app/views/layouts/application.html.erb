@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>InventoryManagement</title>
+  <title>Shyam Telecom</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= cloudinary_js_config %>
 </head>
 <header class="header">
-Inventory Management
+Shyam Telecom Private Limited
 </header>
 <body>
   <nav>
@@ -26,31 +26,30 @@ Inventory Management
         <li role="presentation" class="<%= 'active' if params[:controller] == 'controller4' %>">
           <%= link_to 'Log In <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>'.html_safe,login_path %>
         </li>
-      <% end %>
-    <% if @current_user.present? %>
-      <% if @current_user.admin %>
-        <div class="options col-xs-offset-2">
-          <ul class="nav nav-pills" role="tablist">
-            <li role="presentation" class="active menu">
-              <%= link_to "Users<span class='badge'>#{ User.where(:active=>'true').count }</span>".html_safe , users_path %>
+        <% end %>
+        <% if @current_user.present? %>
+          <% if @current_user.admin? %>
+            <li role="presentation" class="<%= 'active' if params[:controller] == 'controller5' %>">
+            <%= link_to "Users<span class='badge'>#{ User.where(:active=>'true').count }</span>".html_safe , users_path %>
             </li>
-
-            <li role="presentation" class="active menu">
+            <li role="presentation" class="<%= 'active' if params[:controller] == 'controller5' %>">
               <%= link_to "Orders<span class='badge'>#{ Order.all.count }</span>".html_safe , orders_path%>
             </li>
-            <li>
-              <%= link_to 'Manage Inventory',manage_products_path  %>
+            <li role="presentation" class="<%= 'active' if params[:controller] == 'controller6' %>">
+              <%= link_to 'Manage Inventory <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>'.html_safe,manage_products_path  %>
             </li>
-          </ul>
-        </div>
-      <% else %>
-        <%= link_to 'Orders' , orders_path %>
+          <% else %>
+            <li role="presentation" class="<%= 'active' if params[:controller] == 'controller7' %>">
+              <%= link_to 'Orders <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>'.html_safe , orders_path %>
+            </li>
+          <% end %>
       <% end %>
-
+    </nav>
+    <% if @current_user.present? %>
       <div>
         <p class="welcome">
-        <%= "Welcome #{ @current_user.first_name} #{ @current_user.last_name}" %>
-      </p>
+          <%= "Welcome #{ @current_user.first_name} #{ @current_user.last_name}" %>
+        </p>
     </div>
 
           <% if @current_user.image? %>
@@ -82,7 +81,7 @@ Inventory Management
   </nav>
 
   <% if flash[:notice] %>
-  <div class="alert alert-danger order_details" role="alert">
+  <div class="alert alert-danger product_details" role="alert">
     <%= flash[:notice] %>
   </div>
 <% end %>

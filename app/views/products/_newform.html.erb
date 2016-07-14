@@ -1,4 +1,5 @@
-<%= form_for @product,:html => {:multipart => true}  do |f| %>
+<div class="col-xs-offset-4">
+  <%= form_for @product,:html => {:multipart => true}  do |f| %>
   <fieldset>
     <%= f.label :brand%>
     <%= f.text_field :brand %>
@@ -27,5 +28,6 @@
     <%= f.label :image %>
     <%= cl_image_upload_tag :image %>
   </fieldset>
-  <%= f.submit %>
+  <%= f.submit :class=> 'col-xs-offset-3'%>
   <% end %>
+</div>

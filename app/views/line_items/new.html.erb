@@ -3,7 +3,7 @@
   <p>Model Num : <%= @product.model_num %></p>
   <p>Color : <%= @product.color %></p>
 </fieldset>
-
+<div class="col-xs-offset-4">
 <%= form_for @line_item do |f| %>
 <fieldset>
   <%= f.label :product_id , :hidden => true%>
@@ -18,5 +18,6 @@
     <%= f.label :quantity%>
     <%= f.text_field :quantity %>
   </fieldset>
-  <%= f.submit %>
+  <%= f.submit 'Add Quantity', :class=> 'col-xs-offset-3' %>
 <% end %>
+</div>

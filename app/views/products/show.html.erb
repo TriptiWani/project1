@@ -1,3 +1,5 @@
+<div class="prod_home">
+
 <div class="panel panel-default table_display">
   <div class="panel-heading">Details</div>
   <table class="product_details table">
@@ -40,4 +42,5 @@
   <%= link_to 'Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'.html_safe, product_path, :method => 'delete' if @current_user.admin? %>
   <% end %>
   <%= link_to 'Add to cart<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>'.html_safe , add_to_order_path(@product.id)  %>
+</div>
 </div>
