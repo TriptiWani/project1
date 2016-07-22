@@ -18,6 +18,10 @@
                 <td>Quantity</td>
                 <td><%= @line_item.quantity %></td>
             </tr>
+            <tr>
+                <td>Price</td>
+                <td><%= @line_item.product.money_in(@current_user.currency).format %></td>
+            </tr>
         </table>
     </div>
     <div class="table_display order_details">

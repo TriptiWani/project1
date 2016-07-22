@@ -1,13 +1,17 @@
-
-
-<form action="/orders" method="get" class="prod_home">
-  <fieldset>
-    <label for="from">From</label>
-    <input type="date" name="from_date">
-  </fieldset>
-  <fieldset>
-    <label for="to">To</label>
-    <input type="date" name="to_date">
-  </fieldset>
-  <button>Generate</button>
-</form>
+<div class="prod_home">
+    <div class="panel panel-default  table_display">
+        <div class="panel-heading">Reports</div>
+        <form action="/orders" method="get">
+          <fieldset class="col-md-4 col-xs-2 col-xs-offset-1">
+            <label class="gender_label" for="from">From</label>
+            <input type="date" name="from_date">
+          </fieldset>
+          <fieldset class="col-md-4 col-xs-2 col-xs-offset-1">
+            <label class="gender_label" for="to">To</label>
+            <input type="date" name="to_date">
+          </fieldset>
+          <button class="col-md-4 col-xs-1  col-xs-offset-4">Generate</button>
+        </form>
+      </div>
+    </div>
+  </div>

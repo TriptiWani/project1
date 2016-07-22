@@ -18,10 +18,11 @@
                 <td>Price
                 </td>
                 <td>
-                  <%# raise "help" %>
+                  <% if @current_user.present? %>
                     <%= @product.money_in(@current_user.currency).format %>
-                  <!-- <%#= @product.price %></td> -->
-                    <%# raise "help" %>
+                <% else %>
+                  <%= @product.money_in('AUD').format %>
+                <% end %>
             </tr>
             <tr>
                 <td>Manufactured date

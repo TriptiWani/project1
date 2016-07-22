@@ -11,6 +11,8 @@ class OrdersController < ApplicationController
 
     if ( from_date.present? && to_date.present?)
       @order_items = Order.where(:updated_at => from_date...to_date)
+      @admin = User.find_by(:admin => true)
+      UserMailer.report(@order_items,@admin,from_date,to_date).deliver_now
     else
       if @current_user.admin?
         @order_items = Order.all
@@ -86,7 +88,7 @@ class OrdersController < ApplicationController
     @line_items = @order.line_items
     total = 0
     @line_items.each do |line_item|
-      total+= line_item.sub_total
+      total+= line_item.sub_total.to_f
     end
     @order.total_price_cents = total
     @order.save

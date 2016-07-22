@@ -1,118 +1,121 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<div class="prod_home">
+  <h1>Orders details</h1>
+  <% if @order.errors %>
+  <%@order.errors.full_messages.each do |error| %>
+  <li>
+      <%= error %></li>
+  <% end %>
+  <% end %>
+  <div>
+    <%# raise "help" %>
+      <p class="product_details">
+          <%= "Order Number:  #{ @order.id }" %>
+      </p>
+      <p class="product_details">
+          <%= "Order Status:  #{ @order.status }" %>
+      </p>
+      <p class="product_details">
+          <%= "Mode of payment: #{ @order.payment_method}" if @order.payment_method.present? %>
+      </p>
+      <p class="product_details">
+        <%= "Last updated at: #{ @order.updated_at.strftime ' %B %e, %Y' }" %>
+      </p>
+      <p class="product_details">
+          Total
+          <%= pluralize(@line_items.count,'item') %>
+          in this order</p>
+  </div>
+  <div class="product_details">
+      <% if @line_items.count.eql?0 %>
+      <%= link_to 'View Products' , products_path %>
+  <% else %>
+  </div>
 
-<h1>Orders details</h1>
-<% if @order.errors %>
-<%@order.errors.full_messages.each do |error| %>
-<li>
-    <%= error %></li>
-<% end %>
-<% end %>
-<div>
-  <%# raise "help" %>
-    <p class="product_details">
-        <%= "Order Number:  #{ @order.id }" %>
-    </p>
-    <p class="product_details">
-        <%= "Order Status:  #{ @order.status }" %>
-    </p>
-    <p class="product_details">
-        <%= "Mode of payment: #{ @order.payment_method}" if @order.payment_method.present? %>
-    </p>
-    <p class="product_details">
-      <%= "Last updated at: #{ @order.updated_at.strftime ' %B %e, %Y' }" %>
-    </p>
-    <p class="product_details">
-        Total
-        <%= pluralize(@line_items.count,'item') %>
-        in this order</p>
-</div>
-<div class="product_details">
-    <% if @line_items.count.eql?0 %>
-    <%= link_to 'View Products' , products_path %>
-<% else %>
-</div>
+  <div class="panel panel-default table_display">
 
-<div class="panel panel-default table_display">
+      <div class="panel-heading">Order Details</div>
+      <table class="table">
+          <tr>
+              <td>S. No</td>
+              <td>Details</td>
+              <td>Quantity</td>
+              <td>Price per Unit</td>
+              <td>Sub Total</td>
+          </tr>
+          <% i = 1 %>
+          <% @line_items.each do |line_item| %>
 
-    <div class="panel-heading">Order Details</div>
-    <table class="table">
-        <tr>
-            <td>S. No</td>
-            <td>Details</td>
-            <td>Quantity</td>
-            <td>Price per Unit</td>
-            <td>Sub Total</td>
-        </tr>
-        <% i = 1 %>
-        <% @line_items.each do |line_item| %>
+          <tr>
+              <td><%= link_to i,line_item %></td>
+              <td><%= line_item.product.model_num %></td>
+              <td><%= line_item.quantity  %></td>
+              <%#= raise "help" %>
+              <td><%#= number_to_currency line_item.product.price %>
+                <%= line_item.product.money_in(@current_user.currency).format %>
+              </td>
+              <td><%= line_item.sub_total_in(@current_user.currency).format %></td>
+              <% if @order.status.eql?'new' %>
+                <td> <%= link_to 'Delete' , line_item_path(line_item), :method=> 'delete',:data => {:confirm => "Are you sure"}%>
+              </td>
+              <% end %>
+          </tr>
+          <% i= i+1 %>
+          <% end %>
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total</td>
+              <%#= raise 'help' %>
+              <td><%= @order.total_in(@current_user.currency).format %></td>
+          </tr>
+      </table>
+  </div>
+  <div>
 
-        <tr>
-            <td><%= link_to i,line_item %></td>
-            <td><%= line_item.product.model_num %></td>
-            <td><%= line_item.quantity  %></td>
-            <%#= raise "help" %>
-            <td><%#= number_to_currency line_item.product.price %>
-              <%= line_item.product.money_in(@current_user.currency).format %>
-            </td>
-            <td><%= line_item.sub_total_in(@current_user.currency).format %></td>
-            <% if @order.status.eql?'new' %>
-              <td> <%= link_to 'Delete' , line_item_path(line_item), :method=> 'delete',:data => {:confirm => "Are you sure"}%>
-            </td>
-            <% end %>
-        </tr>
-        <% i= i+1 %>
-        <% end %>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Total</td>
-            <td><%= @order.total_in(@current_user.currency).format %></td>
-        </tr>
-    </table>
-</div>
-<div>
+      <div class="table_display">
+          <% if ((@current_user.present?) && (@current_user.admin?)) %>
+          <%= link_to 'User Details' , @order.user %>
+      <% else %>
+          <%= link_to 'My Details' , @order.user %>
+          <% end %>
+      </div>
 
-    <div class="table_display">
-        <% if ((@current_user.present?) && (@current_user.admin?)) %>
-        <%= link_to 'User Details' , @order.user %>
-    <% else %>
-        <%= link_to 'My Details' , @order.user %>
-        <% end %>
-    </div>
+  </div>
+  <% if ((@order.status.eql?'new') && (@current_user.present?) && (@current_user.admin.eql?false))  %>
+  <div class="mode_of_payment">
+      <%#= radio_button_tag(:payment_method, "Credit") %>
+      <%#= label_tag(:payment_method_credit, "Credit") %>
+      <%#= radio_button_tag(:payment_method, "Net Banking") %>
+      <%#= label_tag(:payment_method_cash, "Net Banking") %>
+      <form action="/charge" method="POST" class="order_details">
+          <script
+              src="https://checkout.stripe.com/checkout.js"
+              class="stripe-button"
+              data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+              data-amount="<%= (@order.total_price)*100  %>"
+              data-name="Hello <%= @order.user.first_name %>"
+              data-description="Pay Now"
+              data-image="/img/documentation/checkout/marketplace.png"
+              data-locale="auto"></script>
+      </form>
+  </div>
+  <div class="row">
+      <div class="col-xs-offset-6">
+          <%= button_to 'Confirm' ,order_status_path(:status=>'placed')  %>
+      </div>
+  </div>
+  <% end %>
+  <% if ((@current_user.present?) && (@current_user.admin?)) %>
+  <div class="row">
+      <div class="col-xs-offset-6 actions">
+          <%= button_to 'Approve', order_status_path(:status=>'approved')%>
+          <%= button_to 'Reject', order_status_path(:status=>'cancelled')%>
+      </div>
+  </div>
+
+  <% end %>
+  <% end %>
 
 </div>
-<% if ((@order.status.eql?'new') && (@current_user.present?) && (@current_user.admin.eql?false))  %>
-<div class="mode_of_payment">
-    <%#= radio_button_tag(:payment_method, "Credit") %>
-    <%#= label_tag(:payment_method_credit, "Credit") %>
-    <%#= radio_button_tag(:payment_method, "Net Banking") %>
-    <%#= label_tag(:payment_method_cash, "Net Banking") %>
-    <form action="/charge" method="POST" class="order_details">
-        <script
-            src="https://checkout.stripe.com/checkout.js"
-            class="stripe-button"
-            data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-            data-amount="<%= (@order.total_price)*100  %>"
-            data-name="Hello <%= @order.user.first_name %>"
-            data-description="Pay Now"
-            data-image="/img/documentation/checkout/marketplace.png"
-            data-locale="auto"></script>
-    </form>
-</div>
-<div class="row">
-    <div class="col-xs-offset-6">
-        <%= button_to 'Confirm' ,order_status_path(:status=>'placed')  %>
-    </div>
-</div>
-<% end %>
-<% if ((@current_user.present?) && (@current_user.admin?)) %>
-<div class="row">
-    <div class="col-xs-offset-6 actions">
-        <%= button_to 'Approve', order_status_path(:status=>'approved')%>
-        <%= button_to 'Reject', order_status_path(:status=>'cancelled')%>
-    </div>
-</div>
-
-<% end %>
-<% end %>

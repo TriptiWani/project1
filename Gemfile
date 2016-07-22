@@ -6,6 +6,7 @@ gem 'country_select'
 #httparty
 gem 'httparty'
 gem 'money-rails'
+gem 'whenever', :require => false
 #cloudinary
 gem "cloudinary"
 #bootstrap

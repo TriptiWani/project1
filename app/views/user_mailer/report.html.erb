@@ -1,0 +1,100 @@
+<h1>Report</h1>
+<table class="table">
+    <tr>
+        <td>Order Status</td>
+        <td>Order Id</td>
+        <td>User</td>
+        <td>Name</td>
+    </tr>
+    <% if @order_items.count!= 0 %>
+    <tr>
+        <td>NEW</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% @order_items.where(:status=>'new').each do |order_item| %>
+    <tr>
+        <td></td>
+        <td><%= order_item.id %></td>
+        <td><%= order_item.user.email %></td>
+        <td><%= order_item.user.first_name %></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <% end %>
+    <tr>
+        <td>PLACED</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% @order_items.where(:status=>'placed').each do |order_item| %>
+    <tr>
+        <td></td>
+        <td><%= order_item.id %></td>
+        <td><%= order_item.user.email %></td>
+        <td><%= order_item.user.first_name %></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% end %>
+    <tr>
+        <td>CONFIRMED</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% @order_items.where(:status=>'approved').each do |order_item| %>
+    <tr>
+        <td></td>
+        <td><%= order_item.id %></td>
+        <td><%= order_item.user.email %></td>
+        <td><%= order_item.user.first_name %></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% end %>
+    <tr>
+        <td>REJECTED</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% @order_items.where(:status=>'rejected').each do |order_item| %>
+    <tr>
+        <td></td>
+        <td><%= order_item.id  %></td>
+        <td><%= order_item.user.email %></td>
+        <td><%= order_item.user.first_name %></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% end %>
+    <tr>
+        <td>CANCELLED</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% @order_items.where(:status=>'cancelled').each do |order_item| %>
+    <tr>
+        <td></td>
+        <td><%= order_item.id  %></td>
+        <td><%= order_item.user.email %></td>
+        <td><%= order_item.user.first_name %></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% end %>
+<% else %>
+    <tr>
+        <td>No orders</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% end %>
+
+</table>

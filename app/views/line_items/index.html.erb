@@ -1,21 +1,23 @@
-<h1>Current Cart</h1>
-<div class="panel panel-default table_display">
-    <table class="table">
-        <tr>
-            <td>S.No.</td>
-            <td>Product</td>
-        </tr>
-        <% i = 0 %>
-        <% @line_items.each do |line_item| %>
-        <% i+=1 %>
-        <tr>
-            <td><%= i %></td>
-            <td><%=  link_to line_item.product.model_num , line_item %></td>
-        </tr>
-        <% end %>
-    </table>
-</div>
-<div class="order_details">
-    <%= link_to 'Continue Shopping' , products_path %>
-    <%= link_to 'Submit' , order_path(@line_items.first.order_id) %>
+<div class="prod_home">
+  <h1>Current Cart</h1>
+  <div class="panel panel-default table_display">
+      <table class="table">
+          <tr>
+              <td>S.No.</td>
+              <td>Product</td>
+          </tr>
+          <% i = 0 %>
+          <% @line_items.each do |line_item| %>
+          <% i+=1 %>
+          <tr>
+              <td><%= i %></td>
+              <td><%=  link_to line_item.product.model_num , line_item %></td>
+          </tr>
+          <% end %>
+      </table>
+  </div>
+  <div class="order_details">
+      <%= link_to 'Continue Shopping' , products_path %>
+      <%= link_to 'Submit' , order_path(@line_items.first.order_id) %>
+  </div>
 </div>

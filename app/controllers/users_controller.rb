@@ -2,6 +2,13 @@ class UsersController < ApplicationController
   before_action :authorise_user, :only => [:index]
   before_action :check_for_user, :only => [:edit, :update]
 
+  def self.mail_recap_semaine
+    @user = User.all
+    @user.each do |u|
+      UserMailer.mail_recap_semaine(u.email).deliver
+    end
+  end
+
   def index
     @users = User.all
   end
