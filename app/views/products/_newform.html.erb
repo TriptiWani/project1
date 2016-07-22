@@ -5,12 +5,16 @@
         <%= f.text_field :brand %>
     </fieldset>
     <fieldset>
+        <%= f.label :category%>
+        <%= f.text_field :category %>
+    </fieldset>
+    <fieldset>
         <%= f.label :model_number%>
         <%= f.text_field :model_num %>
     </fieldset>
     <fieldset>
-        <%= f.label :price%>
-        <%= f.text_field :price %>
+        <%= f.label :"Price(in #{(@current_user.currency).upcase})"%>
+        <%= f.text_field :price_cents %>
     </fieldset>
     <fieldset>
         <%= f.label :number_of_pieces%>
@@ -22,7 +26,7 @@
     </fieldset>
     <fieldset>
         <%= f.label :manufactured_date%>
-        <%= f.text_field :mfg_date %>
+        <%= f.text_field :mfg_date, type: :date%>
     </fieldset>
     <fieldset>
         <%= f.label :image %>

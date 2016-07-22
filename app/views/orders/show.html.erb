@@ -8,6 +8,7 @@
 <% end %>
 <% end %>
 <div>
+  <%# raise "help" %>
     <p class="product_details">
         <%= "Order Number:  #{ @order.id }" %>
     </p>
@@ -16,6 +17,9 @@
     </p>
     <p class="product_details">
         <%= "Mode of payment: #{ @order.payment_method}" if @order.payment_method.present? %>
+    </p>
+    <p class="product_details">
+      <%= "Last updated at: #{ @order.updated_at.strftime ' %B %e, %Y' }" %>
     </p>
     <p class="product_details">
         Total
@@ -46,8 +50,15 @@
             <td><%= link_to i,line_item %></td>
             <td><%= line_item.product.model_num %></td>
             <td><%= line_item.quantity  %></td>
-            <td><%= number_to_currency line_item.product.price %></td>
-            <td><%= number_to_currency line_item.sub_total %></td>
+            <%#= raise "help" %>
+            <td><%#= number_to_currency line_item.product.price %>
+              <%= line_item.product.money_in(@current_user.currency).format %>
+            </td>
+            <td><%= line_item.sub_total_in(@current_user.currency).format %></td>
+            <% if @order.status.eql?'new' %>
+              <td> <%= link_to 'Delete' , line_item_path(line_item), :method=> 'delete',:data => {:confirm => "Are you sure"}%>
+            </td>
+            <% end %>
         </tr>
         <% i= i+1 %>
         <% end %>
@@ -56,7 +67,7 @@
             <td></td>
             <td></td>
             <td>Total</td>
-            <td><%= number_to_currency @order.total_price %></td>
+            <td><%= @order.total_in(@current_user.currency).format %></td>
         </tr>
     </table>
 </div>

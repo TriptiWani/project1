@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 # Helps heroku follow rails behaviour, its 12 factors thing
 gem 'rails_12factor'
+gem 'country_select'
+#httparty
+gem 'httparty'
+gem 'money-rails'
 #cloudinary
 gem "cloudinary"
 #bootstrap
@@ -10,6 +14,7 @@ gem 'bootstrap-sass'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
+gem 'world-flags'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

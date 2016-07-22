@@ -1,11 +1,22 @@
 class OrdersController < ApplicationController
   before_action :check_user
 
+  def report
+
+  end
+
   def index
-    if @current_user.admin?
-      @order_items = Order.all
+    from_date = params[:from_date]
+    to_date = params[:to_date]
+
+    if ( from_date.present? && to_date.present?)
+      @order_items = Order.where(:updated_at => from_date...to_date)
     else
-      @order_items = Order.where(:user_id => @current_user.id)
+      if @current_user.admin?
+        @order_items = Order.all
+      else
+        @order_items = Order.where(:user_id => @current_user.id)
+      end
     end
     # raise "help"
   end
@@ -13,6 +24,15 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
   end
+## for users.currency
+  # def currency
+  #   new_currency = params[:currency]
+  #   @current_user.currency = new_currency
+  #   @current_user.save
+  #   redirect_to :back
+  #
+  # end
+
 
   def create
     order = Order.new order_params
@@ -68,7 +88,7 @@ class OrdersController < ApplicationController
     @line_items.each do |line_item|
       total+= line_item.sub_total
     end
-    @order.total_price = total
+    @order.total_price_cents = total
     @order.save
   end
 
@@ -81,7 +101,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:category,:model,:quantity,:color,:brand,:email,:status,:payment_method,:total_price)
+    params.require(:order).permit(:category,:model,:quantity,:color,:brand,:email,:status,:payment_method,:total_price_cents)
   end
 
   def total_amount

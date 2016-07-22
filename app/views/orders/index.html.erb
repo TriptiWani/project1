@@ -25,6 +25,9 @@
                 <% if @current_user.admin? %>
                 <td><%= order_item.user.email %></td>
                 <td><%= order_item.user.first_name %></td>
+                <% else %>
+                <td></td>
+                <td></td>
                 <% end %>
             </tr>
 
@@ -43,6 +46,9 @@
                 <% if @current_user.admin? %>
                 <td><%= order_item.user.email %></td>
                 <td><%= order_item.user.first_name %></td>
+                 <% else %>
+                  <td></td>
+                  <td></td>
                 <% end %>
             </tr>
             <% end %>
@@ -60,6 +66,9 @@
                 <% if @current_user.admin? %>
                 <td><%= order_item.user.email %></td>
                 <td><%= order_item.user.first_name %></td>
+                <% else %>
+                  <td></td>
+                  <td></td>
                 <% end %>
             </tr>
             <% end %>
@@ -77,6 +86,10 @@
                 <% if @current_user.admin? %>
                 <td><%= order_item.user.email %></td>
                 <td><%= order_item.user.first_name %></td>
+                <% else %>
+                  <td></td>
+                  <td></td>
+
                 <% end %>
             </tr>
             <% end %>
@@ -94,6 +107,9 @@
                 <% if @current_user.admin? %>
                 <td><%= order_item.user.email %></td>
                 <td><%= order_item.user.first_name %></td>
+                <% else %>
+                  <td></td>
+                  <td></td>
                 <% end %>
             </tr>
             <% end %>

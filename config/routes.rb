@@ -34,6 +34,8 @@
 
 Rails.application.routes.draw do
   root :to => 'pages#home'
+  get '/orders/report' => 'orders#report' , :as => 'order_report'
+  # get '/orders/:from_date/:to_date' => 'orders#index' , :as => 'order_detail'
   resources :users, :except => [:edit]
   resources :products
   resources :orders
@@ -46,7 +48,10 @@ Rails.application.routes.draw do
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
+
   get '/line_items/:product_id/new' => 'line_items#new' , :as => 'add_to_order'
   get '/line_items/:order_id/index' => 'line_items#index', :as => 'order_list'
-  post 'orders/:id/:status' => 'orders#status' , :as => 'order_status'
+  post '/orders/:id/:status' => 'orders#status' , :as => 'order_status'
+
+  get '/currency' => 'pages#currency' , :as => 'get_currency'
 end

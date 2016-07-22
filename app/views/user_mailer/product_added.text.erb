@@ -1,0 +1,12 @@
+Dear <%= @admin.first_name %>
+
+You have successfully added the new product.
+Product details: <%= @product.id %>
+Name: <%= @product.model_num %>
+Price: <%= @product.money_in(@admin.currency).format %>
+Manufactured date: <%= @product.mfg_date.strftime ' %B %e, %Y' %>
+Number of pieces: <%= @product.num_of_pieces %>
+Brand: <%= @product.brand %>
+Color:   <%= @product.color %>
+
+Let us know if you have any questions.

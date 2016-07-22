@@ -1,4 +1,4 @@
-<h1>Create Account</h1>
+<h1 class="prod_home">Create Account</h1>
 <% if @user.errors %>
 <%@user.errors.full_messages.each do |error| %>
 <li>
@@ -49,6 +49,10 @@
     <fieldset class="col-xs-offset-1">
         <%= f.label :address%>
         <%= f.text_field :address%>
+    </fieldset>
+    <fieldset class="col-xs-offset-1">
+        <%= f.label :preferred_currency %>
+        <%= f.select :currency,['USD','AUD','INR','CAD','EUR'],:include_blank => false %>
     </fieldset>
     <%= f.submit :class=> 'col-xs-offset-4'%>
     <% end %>

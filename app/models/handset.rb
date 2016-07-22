@@ -14,6 +14,8 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  category      :string
+#  price_cents   :integer          default(0), not null
+#  active        :boolean          default(TRUE)
 #
 
 class Handset < Product

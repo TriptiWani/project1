@@ -3,9 +3,11 @@
     <div class="panel panel-default table_display">
         <div class="panel-heading">Details</div>
         <table class="product_details table">
-            <tr>
-                <%= image_tag @product.image ,:class => 'product_image product_details'%>
-            </tr>
+            <% if @product.image.present? %>
+              <tr>
+                  <%= cl_image_tag @product.image ,:class => 'product_image product_details'%>
+              </tr>
+            <% end %>
             <tr>
                 <td>Name
                 </td>
@@ -16,7 +18,10 @@
                 <td>Price
                 </td>
                 <td>
-                    <%= number_to_currency(@product.price) %></td>
+                  <%# raise "help" %>
+                    <%= @product.money_in(@current_user.currency).format %>
+                  <!-- <%#= @product.price %></td> -->
+                    <%# raise "help" %>
             </tr>
             <tr>
                 <td>Manufactured date

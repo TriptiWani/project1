@@ -16,6 +16,7 @@
 #  admin           :boolean          default(FALSE)
 #  image           :text
 #  active          :boolean          default(TRUE)
+#  currency        :string           default("AUD")
 #
 
 class User < ActiveRecord::Base

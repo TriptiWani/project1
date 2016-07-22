@@ -1,11 +1,6 @@
 class LineItemsController < ApplicationController
   before_action :check_user
 
-  def total_price
-    unit_price * quantity
-  end
-
-
   def index
     order_id = params[:order_id]
     @line_items = LineItem.where(:order_id=>order_id)
@@ -23,9 +18,10 @@ class LineItemsController < ApplicationController
   end
 
   def create
-    @line_item = LineItem.create line_item_params
     @order = @current_user.active_order
-    @line_item.sub_total = subtotal(@line_item.quantity,@line_item.product.price.to_f)
+    prod_id = (params[:line_item][:product_id]).to_i
+    check_if_product_already_exists(@order,prod_id)
+    @line_item.sub_total_cents = subtotal(@line_item.quantity,@line_item.product.price_cents.to_f)
     @line_item.save
     redirect_to order_list_path(@order.id)
   end
@@ -46,13 +42,29 @@ class LineItemsController < ApplicationController
   end
 
   def destroy
-    @order = current_order
-    @line_item = @order.line_items.find(params[:id])
+    # @order = Order.find(params[:id])
+    @line_item = LineItem.find(params[:id])
+    @order = Order.find(@line_item.order.id)
     @line_item.destroy
-    @line_items = @order.line_items
+    # @line_items = @order.line_items
+
+    redirect_to @order
   end
 
   private
+  def check_if_product_already_exists(order,prod_id)
+    @order = order
+    prods = @order.line_items.pluck(:product_id)
+    prod_id = (params[:line_item][:product_id]).to_i
+
+    if prods.index(prod_id).present?
+      @line_item = @order.line_items[prods.index(prod_id)]
+      @line_item.quantity+= (params[:line_item][:quantity]).to_i
+      @line_item.save
+    else
+      @line_item = LineItem.create line_item_params
+    end
+  end
   def line_item_params
     params.require(:line_item).permit(:quantity,:product_id,:order_id)
   end

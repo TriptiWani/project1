@@ -1,11 +1,35 @@
-<div class="row prod_home">
-    <div class="col-md-4">
-        <%= link_to image_tag('handsets.jpg',:class => "home_display"),product_category_path('Handset')  %>
+<!-- <div class="row prod_home ">
+    <div class="col-md-3 col-md-offset-1">
+        <%#= link_to image_tag('handsets.jpg',:class => "home_display"),product_category_path('Handset')  %>
     </div>
-    <div class="col-md-4">
-        <%= link_to image_tag('accessories.jpg',:class => "home_display"),product_category_path('Accessory') %>
+    <div class="col-md-1">
+        <%#= link_to image_tag('accessories.jpg',:class => "home_display"),product_category_path('Accessory') %>
     </div>
-    <div class="col-md-4">
-        <%= link_to image_tag('tabs.jpg',:class => "home_display"),product_category_path('Tablet') %>
+    <div class="col-md-4 col-md-offset-2">
+        <%#= link_to image_tag('tabs.jpg',:class => "home_display"),product_category_path('Tablet') %>
     </div>
+</div> -->
+<div class="row catalogue ">
+    <div class="col-md-3 col-md-offset-1">
+      <ul class="f16">
+        <li class="flag ar" lang="ar" title="Argentina">&nbsp;</li>
+        <li class="flag au selected" data-cc="au" data-country_name="Australia" data-language_name="Spanish" data-locale="au">&nbsp;</li>
+      </ul>
+    <%#= flag(:ar, 'Argentina') + flag(:gb, 'England', :selected => flag_code(I18n.locale) %>
+      <%#= link_to "View Catalogue", products_path,:class => 'link_button' %>
+    </div>
+</div>
+<!-- check this -->
+<!-- <li>
+                        <a href="/users/2">View</a><img src="http://fillmurray.com/40/40">
+                        $('#Selection').on('change', function () {
+  console.log( $(this).val() );
+})
+                    </li> -->
+
+<%# end %>
+
+<div>
+
+
 </div>

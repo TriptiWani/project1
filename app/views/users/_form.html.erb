@@ -41,6 +41,10 @@
             <%= f.label :address %>
             <%= f.text_field :address %>
         </fieldset>
+        <fieldset class="col-xs-offset-1">
+            <%= f.label :preferred_currency %>
+            <%= f.select :currency,['USD','AUD','INR','CAD','EUR'],:include_blank => false %>
+        </fieldset>
         <%= f.submit :class=> 'col-xs-offset-3'%>
         <% end %>
     </div>

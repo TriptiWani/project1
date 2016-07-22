@@ -7,89 +7,103 @@
         <%= csrf_meta_tags %>
         <%= cloudinary_js_config %>
     </head>
-    <header class="header">
-        Shyam Telecom Private Limited
-    </header>
-    <body>
-        <nav>
+    <body class="home_page">
+        <div class="top-nav">
+          <header class="header">
+                Shyam Telecom Private Limited
+          </header>
+          <nav>
             <ul class="nav nav-tabs options">
-                <li role="presentation" class="<%= 'active' if params[:controller] == 'controller1' %>">
+                  <li role="presentation" class="<%= 'active' if params[:controller] == 'controller1' %>">
                     <%= link_to 'Home <span class="glyphicon glyphicon-home" aria-hidden="true"></span>'.html_safe ,root_path %>
-                </li>
-                <li role="presentation" class="<%= 'active' if params[:controller] == 'controller2' %>">
-                    <%= link_to 'Contact Us <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>'.html_safe ,contact_us_path %>
-                </li>
-                <% if @current_user.nil? %>
-                <li role="presentation" class="<%= 'active' if params[:controller] == 'controller3' %>">
-                    <%= link_to 'Create account <span class="glyphicon glyphicon-user" aria-hidden="true"></span>'.html_safe , new_user_path %>
-                </li>
-                <li role="presentation" class="<%= 'active' if params[:controller] == 'controller4' %>">
-                    <%= link_to 'Log In <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>'.html_safe,login_path %>
-                </li>
-                <% end %>
-                <% if @current_user.present? %>
-                <% if @current_user.admin? %>
-                <li role="presentation" class="<%= 'active' if params[:controller] == 'controller5' %>">
-                    <%= link_to "Users<span class='badge'>#{ User.where(:active=>'true').count }</span>".html_safe , users_path %>
-                </li>
-                <li role="presentation" class="<%= 'active' if params[:controller] == 'controller5' %>">
-                    <%= link_to "Orders<span class='badge'>#{ Order.all.count }</span>".html_safe , orders_path%>
-                </li>
-                <li role="presentation" class="<%= 'active' if params[:controller] == 'controller6' %>">
-                    <%= link_to 'Manage Inventory <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>'.html_safe,manage_products_path  %>
-                </li>
-            <% else %>
-                <li role="presentation" class="<%= 'active' if params[:controller] == 'controller7' %>">
-                    <%= link_to 'Orders <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>'.html_safe , orders_path %>
-                </li>
-                <% end %>
-                <% end %>
-            </nav>
-            <% if @current_user.present? %>
+                  </li>
+                  <li role="presentation" class="<%= 'active' if params[:controller] == 'controller6' %>">
+                    <%= link_to 'Products Catalogue <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>'.html_safe,manage_products_path  %>
+                  </li>
+                  <li role="presentation" class="<%= 'active' if params[:controller] == 'controller2' %>">
+                      <%= link_to 'Contact Us <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>'.html_safe ,contact_us_path %>
+                  </li>
+                  <% if @current_user.nil? %>
+                    <li role="presentation" class="<%= 'active' if params[:controller] == 'controller3' %>">
+                        <%= link_to 'Create account <span class="glyphicon glyphicon-user" aria-hidden="true"></span>'.html_safe , new_user_path %>
+                    </li>
+                    <li role="presentation" class="<%= 'active' if params[:controller] == 'controller4' %>">
+                      <%= link_to 'Log In <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>'.html_safe,login_path %>
+                    </li>
+                  <% end %>
+                  <% if @current_user.present? %>
+                    <% if @current_user.admin? %>
+                      <li role="presentation" class="<%= 'active' if params[:controller] == 'controller5' %>">
+                        <%= link_to "Users<span class='badge'>#{ User.where(:active=>'true').count }</span>".html_safe , users_path %>
+                      </li>
+                      <li role="presentation" class="<%= 'active' if params[:controller] == 'controller5' %>">
+                        <%= link_to "Orders<span class='badge'>#{ Order.all.count }</span>".html_safe , orders_path%>
+                      </li>
+                      <li role="presentation" class="<%= 'active' if params[:controller] == 'controller5' %>">
+                        <%= link_to "Reports" , order_report_path%>
+                      </li>
+                    <% else %>
+                      <li role="presentation" class="<%= 'active' if params[:controller] == 'controller7' %>">
+                        <%= link_to 'Orders <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>'.html_safe , orders_path %>
+                      </li>
+                    <% end %>
+                  <% end %>
+          </nav>
+          <% if @current_user.present? %>
             <div>
-                <p class="welcome">
-                    <%= "Welcome #{ @current_user.first_name} #{ @current_user.last_name}" %>
-                </p>
+              <p class="welcome">
+                  <%#= "Welcome #{ @current_user.first_name} #{ @current_user.last_name}" %>
+              </p>
             </div>
-
             <% if @current_user.image? %>
-            <%= image_tag @current_user.image,:class => 'display' %>
+              <%= image_tag @current_user.image,:class => 'display' %>
             <% end %>
-
-        </div>
-        <div class="my_nav">
-            <div class="dropdown profile_dropDown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Profile
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>
-                        <%= link_to "View", user_path(@current_user.id) %>
-                    </li>
-                    <li>
-                        <%= link_to "Edit", edit_user_path(@current_user.id) %>
-                    </li>
-                    <li>
-                        <%= link_to "Delete", user_path(@current_user.id),:method => 'delete', :data => {:confirm => "Are you sure"} %>
-                    </li>
-                </ul>
+          <div class="my_nav">
+                <div class="dropdown profile_dropDown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Profile
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li>
+                            <%= link_to "View", user_path(@current_user.id) %>
+                        </li>
+                        <li>
+                            <%= link_to "Edit", edit_user_path(@current_user.id) %>
+                        </li>
+                        <li>
+                            <%= link_to "Delete", user_path(@current_user.id),:method => 'delete', :data => {:confirm => "Are you sure"} %>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="currencyDisplay">
+                        <select name="currency" id="selectCurrency">
+                            <option class="selected" value="USD">USD</option>
+                            <option value="AUD"><ul class="f16">
+                              <li class="flag ar" lang="ar" title="Argentina">&nbsp;</li></ul></option>
+                            <option value="EUR">EUR</option>
+                            <option value="INR">INR</option>
+                            <option value="SGD">SGD</option>
+                            <option value="CAD">CAD</option>
+                        </select>
+                    </ul>
+                </div>
+                <%= link_to 'Logout<span class="glyphicon glyphicon-off" aria-hidden="true"></span>'.html_safe , login_path ,:class => 'logout', :method => :delete%>
             </div>
-            <%= link_to 'Logout<span class="glyphicon glyphicon-off" aria-hidden="true"></span>'.html_safe , login_path , :method => :delete%>
+          <% end %>
         </div>
+
+        <% if flash[:notice] %>
+          <div class="alert alert-danger product_details" role="alert">
+            <%= flash[:notice] %>
+          </div>
         <% end %>
-    </nav>
 
-    <% if flash[:notice] %>
-    <div class="alert alert-danger product_details" role="alert">
-        <%= flash[:notice] %>
-    </div>
-    <% end %>
+        <%= yield %>
 
-    <%= yield %>
-
-</body>
-<footer class="footer">
-    Copyrights reserved &copy; 2016
-</footer>
+    </body>
+    <footer class="footer">
+        Copyrights reserved &copy; 2016
+    </footer>
 </html>

@@ -1,0 +1,53 @@
+<h1>
+    Dear
+    <%= @admin.first_name %>
+</h1>
+
+<p>
+    You have successfully added the new product.
+    <p>
+        Product details:
+        <%= @product.id %>
+    </p>
+    <tr>
+        <td>Name
+        </td>
+        <td>
+            <%= @product.model_num %></td>
+    </tr>
+    <tr>
+        <td>Price
+        </td>
+        <td>
+            <%= @product.money_in(@admin.currency).format %>
+        </td>
+    </tr>
+    <tr>
+        <td>Manufactured date
+        </td>
+        <td>
+            <%= @product.mfg_date.strftime ' %B %e, %Y' %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Number of pieces</td>
+        <td>
+            <%= @product.num_of_pieces %></td>
+    </tr>
+    <tr>
+        <td>
+            Brand</td>
+        <td>
+            <%= @product.brand %></td>
+    </tr>
+    <tr>
+        <td>Color</td>
+        <td>
+            <%= @product.color %></td>
+    </tr>
+</table>
+
+<p>
+    Let us know if you have any questions.
+</p>

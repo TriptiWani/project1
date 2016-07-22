@@ -8,4 +8,8 @@ class PagesController < ApplicationController
   def contact
   end
 
+  def currency
+    # currency_conversion('USD',params[])
+    redirect_to  :back
+  end
 end

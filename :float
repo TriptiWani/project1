@@ -1,2 +1,0 @@
-      invoke  active_record
-      create    db/migrate/20160712075338_add_totalprice_to_order.rb

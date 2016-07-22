@@ -23,4 +23,25 @@ class ApplicationController < ActionController::Base
       @current_order = Order.new
     end
   end
+
+  def money_in(currency,price)
+    Money.new(price, "USD").exchange_to(currency)
+  end
+
+  def currency_conversion(from_currency, to_currency)
+  	accesskey = "d49713aff1ab0d7d30552e1310219e77"
+  	currency_needed = from_currency+','+to_currency
+  	if from_currency.eql?'USD'
+  		url = "http://apilayer.net/api/live?access_key=#{ accesskey }&currencies=#{ to_currency}"
+  		info = HTTParty.get url
+  		@exchange_rate = info['quotes']['USD'+to_currency]
+  	else
+  		url = "http://apilayer.net/api/live?access_key=#{ accesskey }&currencies=#{ currency_needed }"
+  		info = HTTParty.get url
+  		from_rates = info['quotes']['USD'+from_currency]
+  		to_rates = info['quotes']['USD'+to_currency]
+  		@exchange_rate = (to_rates / from_rates)
+  	end
+  end
+
 end
