@@ -1,11 +1,11 @@
-<div class="prod_home">
+<div class="prod_home col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
 
-    <div class="panel panel-default table_display">
+    <div class="panel panel-default">
         <div class="panel-heading">Details</div>
         <table class="product_details table">
             <% if @product.image.present? %>
               <tr>
-                  <%= cl_image_tag @product.image ,:class => 'product_image product_details'%>
+                  <%= cl_image_tag @product.image ,:class => 'col-xs-6 col-xs-offset-3 col-md-8 col-md-offset-2'%>
               </tr>
             <% end %>
             <tr>

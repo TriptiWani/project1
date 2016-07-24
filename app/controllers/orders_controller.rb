@@ -20,7 +20,6 @@ class OrdersController < ApplicationController
         @order_items = Order.where(:user_id => @current_user.id)
       end
     end
-    # raise "help"
   end
 
   def new

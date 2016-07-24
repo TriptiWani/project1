@@ -54,6 +54,6 @@
         <%= f.label :preferred_currency %>
         <%= f.select :currency,['USD','AUD','INR','CAD','EUR'],:include_blank => false %>
     </fieldset>
-    <%= f.submit :class=> 'col-xs-offset-4'%>
+    <%= f.submit 'Create Account', :class=> 'col-xs-offset-4 buttons'%>
     <% end %>
 </div>

@@ -1,16 +1,12 @@
 <div class="row prod_home">
 
     <% @products.each do |product| %>
-
-          <% if product.image.present? %>
           <div class="col-md-4 col-xs-6">
+          <% if product.image.present? %>
+
             <%= link_to image_tag(product.image, :class => 'product_display') , product_path(product[:id]) %>
           <% else %>
-          <div class="col-md-4 col-xs-6">
-            <!-- <%#= link_to (
-            image_tag('Nopicture.gif', :class => 'product_display') ,
-            <p><%= product[:model_num] %></p>
-            ), product_path(product[:id], :class =>'display_product_name') %> -->
+
             <a href="/products/<%=product[:id]  %> " class="no_display">
               <p class="display_product_name">
                 <%= product[:model_num] %>

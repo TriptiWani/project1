@@ -117,7 +117,7 @@ input[type="submit" i] {
  .table_display {
    width:50%;
    margin-left: 400px;
-   padding-bottom: 2em;
+   /*padding-bottom: 2em;*/
  }
  .product_image {
    width:600px;
@@ -175,7 +175,8 @@ label:not(.gender_label) {
   color:#dbd9bb;
   font-size:12px;
   padding-top: 1em;
-  margin-top: 5em;
+  margin-top: 15em;
+  /*padding-top: 2em;*/
 }
 div.header_nav {
   display: inline-grid;
@@ -224,4 +225,7 @@ body {
 
 .prod_home {
   padding-top:5em;
+}
+.buttons {
+  margin-bottom: 5em;
 }

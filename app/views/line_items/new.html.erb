@@ -6,14 +6,14 @@
       <p>Color :
           <%= @product.color %></p>
   </fieldset>
-  <div class="col-xs-offset-4">
+  <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
       <%= form_for @line_item do |f| %>
       <fieldset>
-          <%= f.label :product_id , :hidden => true%>
+          <%= f.label :product_id , :hidden => true, :class =>'hidden'%>
           <%= f.text_field :product_id, :value=>@product.id, :hidden => true  %>
       </fieldset>
       <fieldset>
-          <%= f.label :Order_id , :hidden => true%>
+          <%= f.label :Order_id , :class =>'hidden',:hidden => true%>
           <%= f.text_field :order_id, :value=>@order.id  ,:hidden=>true%>
 
       </fieldset>
@@ -21,7 +21,7 @@
           <%= f.label :quantity%>
           <%= f.text_field :quantity %>
       </fieldset>
-      <%= f.submit 'Add Quantity', :class=> 'col-xs-offset-3' %>
+      <%= f.submit 'Add Quantity', :class=> 'col-xs-offset-6' %>
       <% end %>
   </div>
 </div>

@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   validates :dob, :presence => true
   validates :gender , :presence => true
   validates :phone_number, :presence => true, :length => { :is => 9}
+  # validates :password, :format => {:with => /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$/, message: "must be at least 6 characters and include one number and one letter."}
 
   has_many :orders
 

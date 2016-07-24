@@ -1,6 +1,6 @@
-<div class="prod_home">
+<div class="prod_home col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
   <h1>Current Cart</h1>
-  <div class="panel panel-default table_display">
+  <div class="panel panel-default">
       <table class="table">
           <tr>
               <td>S.No.</td>
@@ -16,8 +16,8 @@
           <% end %>
       </table>
   </div>
-  <div class="order_details">
-      <%= link_to 'Continue Shopping' , products_path %>
-      <%= link_to 'Submit' , order_path(@line_items.first.order_id) %>
+  <div>
+      <%= link_to 'Continue Shopping' , products_path,:class=> 'col-md-5 col-md-offset-2 col-xs-6 col-xs-offset-2' %>
+      <%= link_to 'Submit' , order_path(@line_items.first.order_id),:class=> 'col-md-3 col-md-offset-1 col-xs-3 col-xs-offset-1' %>
   </div>
 </div>
