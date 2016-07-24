@@ -15,6 +15,7 @@
 class Order < ActiveRecord::Base
   has_many :line_items
   belongs_to :user
+  monetize :total_price_cents, :allow_nil => true
 
   #validates :payment_method, presence: true
   def total_in(currency)

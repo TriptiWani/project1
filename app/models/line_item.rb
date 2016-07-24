@@ -15,6 +15,7 @@
 class LineItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :product
+  monetize :sub_total_cents, :allow_nil => true
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
