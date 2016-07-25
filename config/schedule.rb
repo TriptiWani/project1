@@ -20,7 +20,7 @@ set :output, "/tmp/cron_log.log"
 # end
 
 # Learn more: http://github.com/javan/whenever
-every :day, :at => '11:25am' do
-  # UserMailer.welcome_test.deliver_later
-  command "touch /tmp/HELLO"
-end
+# every :day, :at => '11:25am' do
+#   # UserMailer.welcome_test.deliver_later
+#   command "touch /tmp/HELLO"
+# end
