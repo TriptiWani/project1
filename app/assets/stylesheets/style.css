@@ -215,9 +215,8 @@ body {
   padding-top: 45px;
 }
 .home_page {
-  background-image: image-url("background-1.jpg");
-
-  /*url("https://etopian.com/wp-content/uploads/ecommerce.jpg");*/
+  background-image: url("/assets/background-1.jpg");
+  /*background-image:<%= assets/('background-1.jpg') %>;*/
   background-size: cover;
 }
 .menu {
