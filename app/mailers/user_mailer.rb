@@ -5,18 +5,18 @@ class UserMailer < ApplicationMailer
     mail( :to => @user.email , :subject=> "Welcome #{ @user.first_name}", :cc => @admin.email )
   end
 
-  # def welcome_test
-  #   mail( :to => tripti.895@gmail.com , :subject=> "Welcome"  )
-  # end
-  #
-  # def mail_recap_semaine(email)
-  #   mail(:to => email, :subject => "Weekly email from footyaddicts")
-  # end
+  def welcome_test
+    mail( :to => tripti.895@gmail.com , :subject=> "Welcome"  )
+  end
+
+  def mail_recap_semaine(email)
+    mail(:to => email, :subject => "Weekly email from footyaddicts")
+  end
 
   def order_status(order,admin)
     @order = order
     @admin = admin
-    mail( :to => @order.user.email , :subject=> "Status Change for #{ @order.id}", :cc => @admin.email  )
+    mail( :to => @order.user.email , :subject=> "Status Change for Order#{ @order.id}", :cc => @admin.email  )
   end
 
   def product_added(product,admin)

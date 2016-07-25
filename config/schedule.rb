@@ -3,9 +3,11 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
+# require '../app/mailers/user_mailer'
+
 # Example:
 #
-# set :output, "/path/to/my/cron_log.log"
+set :output, "/tmp/cron_log.log"
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -18,10 +20,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-# every :day, :at => '11:16pm' do
-#   UserMailer.welcome_test.deliver_later
-# end
-
-every 2.minutes do
-   runner "User.mail_recap_semaine"
+every :day, :at => '11:25am' do
+  # UserMailer.welcome_test.deliver_later
+  command "touch /tmp/HELLO"
 end
