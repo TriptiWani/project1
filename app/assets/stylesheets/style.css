@@ -132,10 +132,17 @@ input[type="submit" i] {
   border-radius: 50em;
   border: 2px solid rgb(64, 86, 150);
 }
-label:not(.gender_label) {
+label:not(.gender_label,.email_label,.password_label) {
   font-size: 1.25em;
   font-weight: bold;
   min-width: 245px;
+  display: inline-block;
+  text-align: right;
+}
+label:(.email_label,.password_label){
+  font-size: 1.25em;
+  font-weight: bold;
+  min-width: 70px;
   display: inline-block;
   text-align: right;
 }

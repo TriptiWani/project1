@@ -87,7 +87,8 @@ class OrdersController < ApplicationController
     @line_items = @order.line_items
     total = 0
     @line_items.each do |line_item|
-      total+= line_item.sub_total.to_f
+
+      total+= line_item.sub_total_cents.to_f
     end
     @order.total_price_cents = total
     @order.save
@@ -109,7 +110,7 @@ class OrdersController < ApplicationController
     @line_items = @order.line_items
     @total = 0
     @line_items.each do |line_item|
-      @total+= line_item.total_price
+      @total+= line_item.total_price_cents
     end
   end
 
