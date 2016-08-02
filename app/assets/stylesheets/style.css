@@ -139,13 +139,13 @@ label:not(.gender_label,.email_label,.password_label) {
   display: inline-block;
   text-align: right;
 }
-label:(.email_label,.password_label){
+/*label:(.email_label,.password_label){
   font-size: 1.25em;
   font-weight: bold;
   min-width: 70px;
   display: inline-block;
   text-align: right;
-}
+}*/
 
  a {
    padding:1em;
