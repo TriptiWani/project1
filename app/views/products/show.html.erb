@@ -1,12 +1,38 @@
 <div class="prod_home col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
 
     <div class="panel panel-default">
-        <div class="panel-heading">Details</div>
+        <div class="panel-heading">Product details</div>
         <table class="product_details table">
-            <% if @product.image.present? %>
+            <% if @product.images.present? %>
+              <% if @product.images.count.eql?1 %>
+                <%= cl_image_tag @product.images.first.url ,:class => 'col-xs-6 col-xs-offset-3 col-md-8 col-md-offset-2'%>
+              <% else %>
               <tr>
-                  <%= cl_image_tag @product.image ,:class => 'col-xs-6 col-xs-offset-3 col-md-8 col-md-offset-2'%>
+                  <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 product-show-image">
+                    <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+                        <div class='carousel-outer'>
+                            <!-- Wrapper for slides -->
+                            <div class='carousel-inner'>
+                                <% @product.carousel_images.each_with_index do |image, i| %>
+                                <div class='item <%= 'active' if i == 0%>'>
+                                  <%= cl_image_tag(image.url, :width => 300, :height => 300, :class => 'img-responsive')  %>
+                                </div>
+                                <% end if @product.carousel_images %>
+
+                            </div><!-- end carousel-inner -->
+
+                            <!-- Controls -->
+                            <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+                                <span class='glyphicon glyphicon-chevron-left'></span>
+                            </a>
+                            <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+                                <span class='glyphicon glyphicon-chevron-right'></span>
+                            </a>
+                        </div><!-- end carousel-outer -->
+                    </div><!-- end carousel-custom -->
+                  </div><!-- end product-image -->
               </tr>
+              <% end %>
             <% end %>
             <tr>
                 <td>Name
@@ -21,35 +47,43 @@
                   <% if @current_user.present? %>
                     <%= @product.money_in(@current_user.currency).format %>
                 <% else %>
-                  <%= @product.money_in('AUD').format %>
+                  <%#= @product.money_in('AUD').format %>
                 <% end %>
             </tr>
-            <tr>
-                <td>Manufactured date
-                </td>
-                <td>
-                    <%= @product.mfg_date.strftime ' %B %e, %Y' %>
-                </td>
-            </tr>
-            <% if (@current_user.present? && @current_user.admin? ) %>
-            <tr>
-                <td>
-                    Number of pieces</td>
-                <td>
-                    <%= @product.num_of_pieces %></td>
-            </tr>
+            <% if @product.mfg_date.present? %>
+              <tr>
+                  <td>Manufactured date
+                  </td>
+                  <td>
+                      <%= @product.mfg_date.strftime ' %B %e, %Y' %>
+                  </td>
+              </tr>
             <% end %>
-            <tr>
-                <td>
-                    Brand</td>
-                <td>
-                    <%= @product.brand %></td>
-            </tr>
-            <tr>
-                <td>Color</td>
-                <td>
-                    <%= @product.color %></td>
-            </tr>
+            <% if (@current_user.present? && @current_user.admin? ) %>
+              <% if @product.num_of_pieces.present? %>
+                <tr>
+                    <td>
+                        Number of pieces</td>
+                    <td>
+                        <%= @product.num_of_pieces %></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <% if @product.brand.present? %>
+              <tr>
+                  <td>
+                      Brand</td>
+                  <td>
+                      <%= @product.brand %></td>
+              </tr>
+            <% end %>
+            <% if @product.color.present? %>
+              <tr>
+                  <td>Color</td>
+                  <td>
+                      <%= @product.color %></td>
+              </tr>
+            <% end %>
         </table>
     </div>
     <div class="order_details">

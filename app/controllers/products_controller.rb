@@ -4,12 +4,23 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new products_params
-    if (params[:file]).present?
-      req = Cloudinary::Uploader.upload(params[:file])
-      @product.image = req["url"]
+    params[:product][:price_cents] = (params[:product][:price_cents]).to_f * 100
+    if (params[:product][:category].eql?'Handset')
+      @product = Handset.new products_params
+    elsif (params[:product][:category].eql?'Accessory')
+      @product = Accessory.new products_params
     end
+    # @product = Product.new products_params
+    @product.price_cents = 100 * @product.money_in_usd('USD')
     if @product.save
+      if (params[:photos]).present?
+        # This is the magic stuff that will let us upload an image to Cloudinary when creating a new product.
+        params[:photos].each do |photo|
+          req = Cloudinary::Uploader.upload(photo)
+          img = Image.create(:url => req["url"])
+          @product.images << img
+        end
+      end
       @admin = User.find_by(:admin => true)
       UserMailer.product_added(@product,@admin).deliver_now
       redirect_to products_path
@@ -20,13 +31,23 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find_by :id => params[:id]
+    # binding.pry
+    @product.price_cents = @product.money_in(@current_user.currency)
   end
 
   def update
     @product = Product.find_by :id => params[:id]
-    if (params[:file]).present?
-      req = Cloudinary::Uploader.upload(params[:file])
-      @product.image = req["url"]
+    # if (params[:file]).present?
+    #   req = Cloudinary::Uploader.upload(params[:file])
+    #   @product.image = req["url"]
+    # end
+    params[:product][:price_cents] = (params[:product][:price_cents]).to_f * 100
+    if (params[:photos]).present?
+      params[:photos].each do |photo|
+        req = Cloudinary::Uploader.upload(photo) # This is the magic stuff that will let us upload an image to Cloudinary when creating a new product.
+        img = Image.create(:url => req["url"])
+        @product.images << img
+      end
     end
     @product.update products_params
 
@@ -38,7 +59,9 @@ class ProductsController < ApplicationController
   end
 
   def index
-    if params[:category]
+    if params[:productsearch].present?
+      @products = Product.where('model_num ILIKE ?', '%' + params[:productsearch] + '%')
+    elsif params[:category]
       @products = Product.where(:category => params[:category] , :active => true )
     else
       @products = Product.where(:active => true ).order('id ASC')
@@ -56,7 +79,7 @@ class ProductsController < ApplicationController
 
   private
   def products_params
-    params.require(:product).permit(:model_num,:price_cents,:num_of_pieces,:brand,:color,:mfg_date,:image,:category)
+    params.require(:product).permit(:model_num,:price_cents,:num_of_pieces,:brand,:color,:mfg_date,:category)
   end
 
 end

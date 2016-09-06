@@ -19,5 +19,5 @@
 #
 
 class Handset < Product
-
+  # monetize :price_cents, :allow_nil => true
 end

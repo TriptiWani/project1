@@ -22,31 +22,38 @@
             <%= @product.money_in(@admin.currency).format %>
         </td>
     </tr>
-    <tr>
-        <td>Manufactured date
-        </td>
-        <td>
-            <%= @product.mfg_date.strftime ' %B %e, %Y' %>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Number of pieces</td>
-        <td>
-            <%= @product.num_of_pieces %></td>
-    </tr>
+    <% if @product.mfg_date.present? %>
+      <tr>
+          <td>Manufactured date
+          </td>
+          <td>
+              <%= @product.mfg_date.strftime ' %B %e, %Y' %>
+          </td>
+      </tr>
+    <% end %>
+    <% if @product.num_of_pieces.present? %>
+      <tr>
+          <td>
+              Number of pieces</td>
+          <td>
+              <%= @product.num_of_pieces %></td>
+      </tr>
+    <% end %>
+    <% if @product.brand.present? %>
     <tr>
         <td>
             Brand</td>
         <td>
             <%= @product.brand %></td>
     </tr>
+    <% end %>
+    <% if @product.color.present? %>
     <tr>
         <td>Color</td>
         <td>
             <%= @product.color %></td>
     </tr>
-</table>
+    <% end %>
 
 <p>
     Let us know if you have any questions.

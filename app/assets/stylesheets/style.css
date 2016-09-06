@@ -1,12 +1,17 @@
 * {
 }
+body{
+  margin-bottom: 5em;
+}
 td {
   min-width:40px;
 }
 table,tr,td {
-  // border:1px solid black;
+  /*// border:1px solid black;*/
 }
-
+.creationErrors{
+  text-align:center;
+}
 .top-nav {
   position: fixed;
   z-index: 10;
@@ -14,7 +19,14 @@ table,tr,td {
   width: 100%;
   background-color: rgb(201, 209, 232);
 }
-
+.fb_button > img{
+  width:50px;
+  height: 50px;
+}
+.twitter_button > img{
+  width:55px;
+  height: 55px;
+}
 .nav-tabs {
   border: none;
 }
@@ -92,12 +104,31 @@ input[type="submit" i] {
    position:fixed;
   color:black;
  }
+ .product_container{
+   margin:1em;
+ }
+ .productView{
+   border: 1px solid rgb(64, 86, 150);
+ }
+ .productName{
+   padding:1em;
+   text-align:center;
+ }
+.carousel-outer{
+  align:center;
+}
+.responsive{
+  width:300px;
+  height:250px;
+}
  .product_display {
-   width:350px;
-   height: 350px;
-   border-radius: 25em;
-   padding: 2em;
-
+   width:125px;
+   height: 150px;
+   /*border-radius: 1em;*/
+   /*padding: 2em;*/
+   /*border-color: black;*/
+   /*border: 1px solid rgb(64, 86, 150);*/
+   margin:5px;
  }
  .product_display_name {
    width: 300px;
@@ -159,7 +190,12 @@ label:not(.gender_label,.email_label,.password_label) {
   list-style-type: none;
   text-align: center;
  }
-
+.required_fields{
+  text-align: center;
+}
+.required_fields > span{
+  color:red;
+}
  .product_details {
    text-align: center;
  }
@@ -173,17 +209,16 @@ label:not(.gender_label,.email_label,.password_label) {
  }
  .footer {
   background-color: rgb(64, 86, 150);
-  position:fixed;
-  bottom: 0px;
-  left:0px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
   text-align:center;
   width:100%;
   height:30px;
   color:#dbd9bb;
   font-size:12px;
   padding-top: 1em;
-  margin-top: 15em;
-  /*padding-top: 2em;*/
 }
 div.header_nav {
   display: inline-grid;
@@ -220,11 +255,15 @@ input[type="file"] {
 }
 body {
   padding-top: 45px;
+  margin-bottom: 10px;
+}
+.fbarea{
+  display: inline-block;
 }
 .home_page {
-  background-image: url("/assets/background-1.jpg");
+  /*background-image: url("/assets/background-1.jpg");*/
   /*background-image:<%= assets/('background-1.jpg') %>;*/
-  background-size: cover;
+  /*background-size: cover;*/
 }
 .menu {
   padding-right:2em;
@@ -232,7 +271,17 @@ body {
 
 .prod_home {
   padding-top:5em;
+  padding-bottom: 5em;
 }
 .buttons {
   margin-bottom: 5em;
+}
+h1{
+  padding-bottom: 0;
+}
+.report_format{
+  text-align:center;
+}
+.product_search{
+  text-align:center;
 }

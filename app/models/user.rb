@@ -21,10 +21,10 @@
 
 class User < ActiveRecord::Base
   has_secure_password
-  validates :email, :presence => true, :uniqueness => true
-  validates :dob, :presence => true
-  validates :gender , :presence => true
-  validates :phone_number, :presence => true, :length => { :is => 9}
+  # validates :email, :presence => true, :uniqueness => true
+  # validates :dob, :presence => true
+  # validates :gender , :presence => true
+  # validates :phone_number, :presence => true, :length => { :is => 9}
   # validates :password, :format => {:with => /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$/, message: "must be at least 6 characters and include one number and one letter."}
 
   has_many :orders
@@ -34,4 +34,11 @@ class User < ActiveRecord::Base
     order = self.orders.create if order.nil?
     order
   end
+
+  def self.koala(auth)
+      access_token = auth['token']
+      facebook = Koala::Facebook::API.new(access_token)
+      facebook.get_object("me?fields=first_name,last_name,age_range,picture,locale,bio,email,photos")
+  end
+
 end

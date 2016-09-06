@@ -13,6 +13,37 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def twitter_login
+    credentials = request.env['omniauth.auth']['credentials']
+    session[:access_token] = credentials['token']
+    session[:access_token_secret] = credentials['secret']
+    @user = client.user(include_entities: true)
+    twitter_id = @user["id"]
+    @current_user = User.find_or_create_by(:twitter_id => twitter_id, :email =>  @user.name  )
+    @current_user.password_digest = "chicken"
+    @current_user.save
+
+    session[:user_id] = @current_user.id
+
+    redirect_to root_path
+  end
+
+  def login
+    @user = User.koala(request.env['omniauth.auth']['credentials'])
+   facebook_id = @user["id"]
+   email = @user["email"]
+   image = @user['picture']['data']['url']
+   @current_user = User.find_or_create_by(:facebook_id => facebook_id, :email => email)
+   @current_user.first_name = @user["first_name"]
+   @current_user.last_name = @user["last_name"]
+   @current_user.password_digest = "chicken"
+   @current_user.image = image
+   @current_user.save
+   session[:user_id] = @current_user.id
+
+   redirect_to root_path
+  end
+
   def new
     @user = User.new
   end

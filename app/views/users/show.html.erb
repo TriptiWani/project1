@@ -1,5 +1,5 @@
 <div class="prod_home col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
-    <div class="panel  panel-default ">
+    <div class="panel  panel-default">
         <div class="panel-heading">User Details</div>
         <table class="table">
             <tr>
@@ -13,42 +13,54 @@
                 <td>
                     <%= @user.first_name.concat(' '.concat(@user.last_name)) %></td>
             </tr>
-            <tr>
-                <td>Email id
-                </td>
-                <td>
-                    <%= @user.email %></td>
-            </tr>
-            <tr>
-                <td>Date of birth
-                </td>
-                <td>
-                    <%= @user.dob.strftime '%B %e, %Y' %></td>
-            </tr>
-            <tr>
-                <td>
-                    Gender</td>
-                <td>
-                    <%= @user.gender %></td>
-            </tr>
-            <tr>
-                <td>
-                    Phone Number</td>
-                <td>
-                    <%= number_to_phone(@user.phone_number) %></td>
-            </tr>
-            <tr>
-                <td>Preferred Currency
-                </td>
-                <td>
-                    <%= @user.currency %></td>
-            </tr>
-            <tr>
-                <td>Address
-                </td>
-                <td>
-                    <%= @user.address %></td>
-            </tr>
+            <% if @user.email.present? %>
+              <tr>
+                  <td>Email id
+                  </td>
+                  <td>
+                      <%= @user.email %></td>
+              </tr>
+            <% end %>
+            <% if @user.dob.present? %>
+              <tr>
+                  <td>Date of birth
+                  </td>
+                  <td>
+                      <%= @user.dob.strftime '%B %e, %Y' %></td>
+              </tr>
+            <% end %>
+            <% if @user.gender.present? %>
+              <tr>
+                  <td>
+                      Gender</td>
+                  <td>
+                      <%= @user.gender %></td>
+              </tr>
+            <% end %>
+            <% if @user.phone_number.present? %>
+              <tr>
+                  <td>
+                      Phone Number</td>
+                  <td>
+                      <%= number_to_phone(@user.phone_number) %></td>
+              </tr>
+            <% end %>
+            <% if @user.currency.present? %>
+              <tr>
+                  <td>Preferred Currency
+                  </td>
+                  <td>
+                      <%= @user.currency %></td>
+              </tr>
+            <% end %>
+            <% if @user.address.present? %>
+              <tr>
+                  <td>Address
+                  </td>
+                  <td>
+                      <%= @user.address %></td>
+              </tr>
+            <% end %>
         </table>
     </div>
     <div class="order_details">

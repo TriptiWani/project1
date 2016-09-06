@@ -1,59 +1,65 @@
-<h1 class="prod_home">Create Account</h1>
-<% if @user.errors %>
-<%@user.errors.full_messages.each do |error| %>
-<li>
-    <%= error %></li>
-<% end %>
-<% end %>
-<div class="col-xs-offset-3">
-    <%= form_for @user,:html => {:multipart => true} do |f| %>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label :first_name %>
-        <%= f.text_field :first_name %>
-    </fieldset>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label :last_name%>
-        <%= f.text_field :last_name%>
-    </fieldset>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label :email%>
-        <%= f.text_field :email%>
-    </fieldset>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label :dob%>
-        <%= f.text_field :dob, type: :date%>
-    </fieldset>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label :gender %>
-        <%= f.label :m ,:class=>"gender_label" %>
-        <%= radio_button :user, :gender, "M"%>
-        <%= f.label :f ,:class=>"gender_label"%>
-        <%= radio_button :user, :gender, "F"%>
-    </fieldset>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label :image %>
-        <%= cl_image_upload_tag :image ,:class=> 'col-xs-offset-2' %>
-    </fieldset>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label:password %>
-        <%= f.password_field :password%>
-    </fieldset>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label :retype_password %>
-        <%= f.password_field :password_confirmation%>
-    </fieldset>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label :phone_number%>
-        <%= f.text_field :phone_number%>
-    </fieldset>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label :address%>
-        <%= f.text_field :address%>
-    </fieldset>
-    <fieldset class="col-xs-offset-1">
-        <%= f.label :preferred_currency %>
-        <%= f.select :currency,['USD','AUD','INR','CAD','EUR'],:include_blank => false %>
-    </fieldset>
-    <%= f.submit 'Create Account', :class=> 'col-xs-offset-4 buttons'%>
-    <% end %>
+<div class="prod_home">
+  <h1>Create Account</h1>
+  <% if @user.errors %>
+    <ul class="creationErrors">
+      <%@user.errors.full_messages.each do |error| %>
+        <li>
+          <%= error %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="col-xs-offset-3 col-xs-6 col-md-4 col-md-offset-4">
+      <%= form_for @user,:html => {:multipart => true} do |f| %>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label :'first_name*' %>
+          <%= f.text_field :first_name %>
+      </fieldset>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label :last_name%>
+          <%= f.text_field :last_name%>
+      </fieldset>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label :'email*'%>
+          <%= f.text_field :email%>
+      </fieldset>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label :dob%>
+          <%= f.text_field :dob, type: :date%>
+      </fieldset>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label :gender %>
+          <%= f.label :m ,:class=>"gender_label" %>
+          <%= radio_button :user, :gender, "M"%>
+          <%= f.label :f ,:class=>"gender_label"%>
+          <%= radio_button :user, :gender, "F"%>
+      </fieldset>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label :image %>
+          <%= cl_image_upload_tag :image ,:class=> 'col-xs-offset-2' %>
+      </fieldset>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label:'password*' %>
+          <%= f.password_field :password%>
+      </fieldset>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label :'retype_password*' %>
+          <%= f.password_field :password_confirmation%>
+      </fieldset>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label :phone_number%>
+          <%= f.text_field :phone_number%>
+      </fieldset>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label :address%>
+          <%= f.text_field :address%>
+      </fieldset>
+      <fieldset class="col-xs-offset-1">
+          <%= f.label :'preferred_currency*' %>
+          <%= f.select :currency,['USD','AUD','INR','CAD','EUR'],:include_blank => false %>
+      </fieldset>
+      <%= render :partial => 'required_fields_form' %>
+      <%= f.submit 'Create Account', :class=> 'col-xs-offset-4 buttons'%>
+      <% end %>
+  </div>
 </div>

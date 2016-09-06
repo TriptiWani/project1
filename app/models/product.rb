@@ -20,11 +20,24 @@
 
 class Product < ActiveRecord::Base
   has_one :line_item
-  register_currency :CAD
+  has_many :images
+  register_currency :USD
   monetize :price_cents, :allow_nil => true
+  validates :model_num, :presence => true
+  # validates :price_cents, :presence => true
+  validates :num_of_pieces, :presence => true
+  validates :category, :presence => true
 
   def money_in(currency)
     Money.new(price_cents, "USD").exchange_to(currency)
+  end
+
+  def money_in_usd(currency)
+    Money.new(price_cents, "AUD").exchange_to(currency)
+  end
+
+  def carousel_images
+    images[1..-1]
   end
 
 end

@@ -1,6 +1,7 @@
 <div class="prod_home  col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+  <%= " From #{@from_date} - To #{@to_date}" if ( @from_date.present? && @to_date.present?)  %>
     <div class="panel panel-default">
-        <div class="panel-heading">My Orders</div>
+        <div class="panel-heading">Orders </div>
         <table class="table">
             <tr>
                 <td>Order Status</td>

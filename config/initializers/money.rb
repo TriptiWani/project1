@@ -2,7 +2,7 @@ MoneyRails.configure do |config|
 
   # To set the default currency
   #
-  config.default_currency = :usd
+  config.default_currency = :aud
 
   # Set default bank object
   #
@@ -13,7 +13,8 @@ MoneyRails.configure do |config|
   # (The conversion rate refers to one direction only)
   #
   # Example:
-  config.add_rate "USD", "AUD", 1.34515
+  config.add_rate "AUD", "USD", 1.34515
+  config.add_rate "USD", "AUD", 0.9
   config.add_rate "USD", "INR", 67.08
   config.add_rate "USD", "EUR", 0.9
   config.add_rate "USD", "CAD", 1.31
@@ -21,7 +22,7 @@ MoneyRails.configure do |config|
   # To handle the inclusion of validations for monetized fields
   # The default value is true
   #
-  config.include_validations = true
+  config.include_validations = false
 
   # Default ActiveRecord migration configuration values for columns:
   #

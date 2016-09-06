@@ -3,10 +3,12 @@ source 'https://rubygems.org'
 # Helps heroku follow rails behaviour, its 12 factors thing
 gem 'rails_12factor'
 gem 'country_select'
+gem 'omniauth-facebook'
+gem "koala", "~> 1.10.0rc"
 #httparty
 gem 'httparty'
 gem 'money-rails'
-gem 'whenever', :require => false
+# gem 'whenever'
 #cloudinary
 gem "cloudinary"
 #bootstrap
@@ -36,7 +38,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'omniauth-twitter'
+gem 'omniauth'
+gem 'twitter'
+gem 'twitter-text'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

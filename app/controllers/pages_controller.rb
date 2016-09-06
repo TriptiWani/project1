@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    redirect_to products_path
   end
 
   def products_home

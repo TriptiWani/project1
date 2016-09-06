@@ -1,23 +1,34 @@
+<% if @product.errors %>
+  <ul class="creationErrors">
+    <%@product.errors.full_messages.each do |error| %>
+      <li>
+        <%= error %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 <div class="col-xs-offset-4">
-    <%= form_for @product,:html => {:multipart => true}  do |f| %>
+  <%# raise "help" %>
+    <%= form_for @product, :url => "/products/#{@product.id}" :html => {:multipart => true}  do |f| %>
     <fieldset>
-        <%= f.label :brand%>
+        <%= f.label :'brand*'%>
         <%= f.text_field :brand %>
     </fieldset>
     <fieldset>
-        <%= f.label :category%>
-        <%= f.text_field :category %>
+        <%= f.label :'category*'%>
+        <%#= f.text_field :category %>
+        <%= f.select :category,['Handset','Accessory'],:include_blank => true %>
     </fieldset>
     <fieldset>
-        <%= f.label :model_number%>
+        <%= f.label :'model_Number*'%>
         <%= f.text_field :model_num %>
     </fieldset>
     <fieldset>
-        <%= f.label :"Price(in #{(@current_user.currency).upcase})"%>
+        <%= f.label :"Price(in #{(@current_user.currency).upcase})*"%>
         <%= f.text_field :price_cents %>
     </fieldset>
     <fieldset>
-        <%= f.label :number_of_pieces%>
+        <%= f.label :'number_of_pieces*'%>
         <%= f.text_field :num_of_pieces %>
     </fieldset>
     <fieldset>
@@ -30,8 +41,11 @@
     </fieldset>
     <fieldset>
         <%= f.label :image %>
-        <%= cl_image_upload_tag :image %>
+        <%#= cl_image_upload_tag :image %>
+        <%= file_field_tag("photos[]", :multiple => true ) %>
+        <%#= f.submit 'submit', :class => 'submit' %>
     </fieldset>
+    <%= render :partial => 'required_fields_form' %>
     <%= f.submit :class=> 'col-xs-offset-3'%>
     <% end %>
 </div>

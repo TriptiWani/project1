@@ -6,13 +6,15 @@ class OrdersController < ApplicationController
   end
 
   def index
-    from_date = params[:from_date]
-    to_date = params[:to_date]
+    @from_date = params[:from_date]
+    @to_date = params[:to_date]
 
-    if ( from_date.present? && to_date.present?)
-      @order_items = Order.where(:updated_at => from_date...to_date)
+    if ( @from_date.present? && @to_date.present?)
+      @order_items = Order.where(:updated_at => @from_date...@to_date)
       @admin = User.find_by(:admin => true)
-      UserMailer.report(@order_items,@admin,from_date,to_date).deliver_now
+
+      UserMailer.report(@order_items,@admin,@from_date,@to_date).deliver_now if params[:report_format].eql?'Email'
+      # redirect :back if params[:report_format].eql?'Screen'
     else
       if @current_user.admin?
         @order_items = Order.all
