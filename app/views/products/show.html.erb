@@ -47,7 +47,7 @@
                   <% if @current_user.present? %>
                     <%= @product.money_in(@current_user.currency).format %>
                 <% else %>
-                  <%#= @product.money_in('AUD').format %>
+                  <%= @product.money_in('AUD').format %>
                 <% end %>
             </tr>
             <% if @product.mfg_date.present? %>

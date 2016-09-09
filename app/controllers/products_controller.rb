@@ -11,7 +11,8 @@ class ProductsController < ApplicationController
       @product = Accessory.new products_params
     end
     # @product = Product.new products_params
-    @product.price_cents = 100 * @product.money_in_usd('USD')
+    # @product.price_cents = 100 * @product.money_in_usd('USD')
+    @product.price_cents = 100 * @product.price_cents
     if @product.save
       if (params[:photos]).present?
         # This is the magic stuff that will let us upload an image to Cloudinary when creating a new product.
@@ -41,7 +42,6 @@ class ProductsController < ApplicationController
     #   req = Cloudinary::Uploader.upload(params[:file])
     #   @product.image = req["url"]
     # end
-    params[:product][:price_cents] = (params[:product][:price_cents]).to_f * 100
     if (params[:photos]).present?
       params[:photos].each do |photo|
         req = Cloudinary::Uploader.upload(photo) # This is the magic stuff that will let us upload an image to Cloudinary when creating a new product.
@@ -49,7 +49,14 @@ class ProductsController < ApplicationController
         @product.images << img
       end
     end
-    @product.update products_params
+    @product.price_cents = @product.price_cents.to_f * 100
+    if @product.type.present?
+      binding.pry
+      @product.update products_params(@product.type.downcase.to_sym)
+    else
+      binding.pry
+      @product.update products_params
+    end
 
     redirect_to product_path(@product[:id])
   end
@@ -78,8 +85,13 @@ class ProductsController < ApplicationController
   end
 
   private
-  def products_params
-    params.require(:product).permit(:model_num,:price_cents,:num_of_pieces,:brand,:color,:mfg_date,:category)
+  def products_params(params_product='')
+    if params_product.eql?''
+      params.require(:product).permit(:model_num,:price_cents,:num_of_pieces,:brand,:color,:mfg_date,:category,:type)
+
+    else
+      params.require(params_product).permit(:model_num,:price_cents,:num_of_pieces,:brand,:color,:mfg_date,:category,:type)
+    end
   end
 
 end

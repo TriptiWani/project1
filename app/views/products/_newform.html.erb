@@ -9,7 +9,7 @@
 <% end %>
 <div class="col-xs-offset-4">
   <%# raise "help" %>
-    <%= form_for @product, :url => "/products/#{@product.id}" :html => {:multipart => true}  do |f| %>
+    <%= form_for @product, :url => "/products/#{@product.id}", :html => {:multipart => true}  do |f| %>
     <fieldset>
         <%= f.label :'brand*'%>
         <%= f.text_field :brand %>
@@ -24,7 +24,7 @@
         <%= f.text_field :model_num %>
     </fieldset>
     <fieldset>
-        <%= f.label :"Price(in #{(@current_user.currency).upcase})*"%>
+        <%= f.label :"Price(in USD)*"%>
         <%= f.text_field :price_cents %>
     </fieldset>
     <fieldset>
