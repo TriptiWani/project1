@@ -32,7 +32,6 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find_by :id => params[:id]
-    # binding.pry
     @product.price_cents = @product.money_in(@current_user.currency)
   end
 
@@ -51,10 +50,8 @@ class ProductsController < ApplicationController
     end
     @product.price_cents = @product.price_cents.to_f * 100
     if @product.type.present?
-      binding.pry
       @product.update products_params(@product.type.downcase.to_sym)
     else
-      binding.pry
       @product.update products_params
     end
 
