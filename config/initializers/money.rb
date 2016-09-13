@@ -13,10 +13,10 @@ MoneyRails.configure do |config|
   # (The conversion rate refers to one direction only)
   #
   # Example:
-  config.add_rate "AUD", "USD", 1.34515
-  config.add_rate "USD", "AUD", 0.9
-  config.add_rate "USD", "INR", 67.08
-  config.add_rate "USD", "EUR", 0.9
+  config.add_rate "AUD", "USD", 0.75
+  config.add_rate "USD", "AUD", 1.33
+  config.add_rate "USD", "INR", 66.89
+  config.add_rate "USD", "EUR", 0.89
   config.add_rate "USD", "CAD", 1.31
 
   # To handle the inclusion of validations for monetized fields

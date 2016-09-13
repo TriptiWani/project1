@@ -3,14 +3,14 @@
     <div class="panel-heading">Users List</div>
     <table class="table">
         <% @users.each do |user| %>
-        <tr>
-            <td>
-                <%= link_to user.first_name+' '+user.last_name , user %>
-            </td>
-            <td>
-                <%= ((user.active?)? 'Active':'Inactive') %>
-            </td>
-        </tr>
+          <tr>
+              <td>
+                  <%= link_to user.first_name+' '+user.last_name , user %>
+              </td>
+              <td>
+                  <%= ((user.active?)? 'Active':'Inactive') %>
+              </td>
+          </tr>
         <% end %>
     </table>
   </div>

@@ -4,29 +4,19 @@
     <%= submit_tag "Search", class: "searchButton" %>
   <% end %>
   <div class="col-md-offset-1 col-md-10">
-    <%# raise "help" %>
-  <% @products.each do |product| %>
-    <div class="col-md-2 col-md-offset-1 col-xs-6 col-xs-offset-3 product_container">
-      <div class="productView">
-        <% if product.images.present? %>
-<%# raise "help" %>
-          <%= link_to image_tag(product.images.first.url, :class => 'product_display') , product_path(product[:id]) %>
-        <% else %>
-          <%= link_to image_tag('no_image.png', :class => 'product_display') , product_path(product[:id]) %>
-        <% end %>
-        <div class="productName">
-          <%= link_to product[:model_num], product_path(product[:id])%>
+    <% @products.each do |product| %>
+      <div class="col-md-2 col-md-offset-1 col-xs-6 col-xs-offset-3 product_container">
+        <div class="productView">
+          <% if product.images.present? %>
+            <%= link_to image_tag(product.images.first.url, :class => 'product_display') , product_path(product[:id]) %>
+          <% else %>
+            <%= link_to image_tag('no_image.png', :class => 'product_display') , product_path(product[:id]) %>
+          <% end %>
+          <div class="productName">
+            <%= link_to product[:model_num], product_path(product[:id])%>
+          </div>
         </div>
       </div>
-
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
-
-
-  <!-- <a href="/products/<%#=product[:id]  %> " class="no_display">
-    <p class="display_product_name">
-      <%#= product[:model_num] %>
-    </p>
-    <%#= image_tag('Nopicture.gif', :class => 'product_display') %>
-  </a> -->

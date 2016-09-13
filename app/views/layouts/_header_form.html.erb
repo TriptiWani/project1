@@ -42,11 +42,11 @@
           <% end %>
   </nav>
   <% if @current_user.present? %>
-    <div>
+    <!-- <div>
       <p class="welcome">
           <%#= "Welcome #{ @current_user.first_name} #{ @current_user.last_name}" %>
       </p>
-    </div>
+    </div> -->
     <% if @current_user.image? %>
       <%= image_tag @current_user.image,:class => 'display' %>
     <% end %>
@@ -68,19 +68,6 @@
                 </li>
             </ul>
         </div>
-        <!-- <div>
-            <ul class="currencyDisplay">
-                <select name="currency" id="selectCurrency">
-                    <option class="selected" value="USD">USD</option>
-                    <option value="AUD"><ul class="f16">
-                      <li class="flag ar" lang="ar" title="Argentina">&nbsp;</li></ul></option>
-                    <option value="EUR">EUR</option>
-                    <option value="INR">INR</option>
-                    <option value="SGD">SGD</option>
-                    <option value="CAD">CAD</option>
-                </select>
-            </ul>
-        </div> -->
         <%= link_to 'Logout<span class="glyphicon glyphicon-off" aria-hidden="true"></span>'.html_safe , login_path ,:class => 'logout', :method => :delete%>
     </div>
   <% end %>

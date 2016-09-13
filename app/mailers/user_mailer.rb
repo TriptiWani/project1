@@ -4,14 +4,6 @@ class UserMailer < ApplicationMailer
     @admin = admin
     mail( :to => @user.email , :subject=> "Welcome #{ @user.first_name}", :cc => @admin.email )
   end
-  # 
-  # def welcome_test
-  #   mail( :to => tripti.895@gmail.com , :subject=> "Welcome"  )
-  # end
-  #
-  # def mail_recap_semaine(email)
-  #   mail(:to => email, :subject => "Weekly email from footyaddicts")
-  # end
 
   def order_status(order,admin)
     @order = order

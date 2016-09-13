@@ -8,17 +8,17 @@
 
 
 # users seed data
-# LineItem.destroy_all
-# Order.destroy_all
-# User.destroy_all
-#
-# User.create(:first_name=>"Tripti",:last_name=>"Wani",:email=>"tripti.895@gmail.com",:dob=>"1986-11-15", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"481254765" , :address => "Sydney" ,:image => "cute_girl.jpg",:admin => true, :currency => "USD" )
-# User.create(:first_name=>"Admin",:last_name=>"",:email=>"tripti@gmail.com",:dob=>"1986-11-1", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"481254765" , :address => "Canberra")
-# User.create(:first_name=>"Lori",:last_name=>"Taulbee",:email=>"lori@ga.com",:dob=>"1986-3-2", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"456456456" , :address => "Dayton")
-# User.create(:first_name=>"Kym",:last_name=>"",:email=>"kym@ga.com",:dob=>"2008-1-2", :gender => "M" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"145234765" , :address => "Mumbai" )
-# User.create(:first_name=>"Xinwei",:last_name=>"Xang",:email=>"x@ga.com",:dob=>"1975-3-4", :gender => "M" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"678678678" , :address => "new York" )
-# User.create(:first_name=>"Pam",:last_name=>"Anderson",:email=>"pamand@ga.com",:dob=>"1995-2-6", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"967345876" , :address => "Perth" )
-#
+LineItem.destroy_all
+Order.destroy_all
+User.destroy_all
+
+User.create(:first_name=>"Tripti",:last_name=>"Wani",:email=>"tripti.895@gmail.com",:dob=>"1986-11-15", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"481254765" , :address => "Sydney" ,:image => "cute_girl.jpg",:admin => true, :currency => "USD" )
+User.create(:first_name=>"Admin",:last_name=>"",:email=>"tripti@gmail.com",:dob=>"1986-11-1", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"481254765" , :address => "Canberra")
+User.create(:first_name=>"Lori",:last_name=>"Taulbee",:email=>"lori@ga.com",:dob=>"1986-3-2", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"456456456" , :address => "Dayton")
+User.create(:first_name=>"Kym",:last_name=>"",:email=>"kym@ga.com",:dob=>"2008-1-2", :gender => "M" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"145234765" , :address => "Mumbai" )
+User.create(:first_name=>"Xinwei",:last_name=>"Xang",:email=>"x@ga.com",:dob=>"1975-3-4", :gender => "M" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"678678678" , :address => "new York" )
+User.create(:first_name=>"Pam",:last_name=>"Anderson",:email=>"pamand@ga.com",:dob=>"1995-2-6", :gender => "F" , :password => "chicken" ,:password_confirmation=>"chicken", :phone_number =>"967345876" , :address => "Perth" )
+
 
 
 # Products seed data

@@ -1,20 +1,21 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
-Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+  Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 
-Stripe.card.createToken({
-  number: $('.card-number').val(),
-  cvc: $('.card-cvc').val(),
-  exp_month: $('.card-expiry-month').val(),
-  exp_year: $('.card-expiry-year').val()
-}, stripeResponseHandler);
+  Stripe.card.createToken({
+    number: $('.card-number').val(),
+    cvc: $('.card-cvc').val(),
+    exp_month: $('.card-expiry-month').val(),
+    exp_year: $('.card-expiry-year').val()
+  }, stripeResponseHandler);
 </script>
 <div class="prod_home   col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
   <h1>Order Number: <%= @order.id %></h1>
   <% if @order.errors %>
     <%@order.errors.full_messages.each do |error| %>
     <li>
-        <%= error %></li>
+        <%= error %>
+    </li>
     <% end %>
   <% end %>
   <div>
@@ -38,7 +39,6 @@ Stripe.card.createToken({
         </div>
       <% else %>
         <div class="panel panel-default">
-
             <div class="panel-heading">Order Details</div>
             <table class="table">
                 <tr>
@@ -55,14 +55,16 @@ Stripe.card.createToken({
                     <td><%= link_to i,line_item %></td>
                     <td><%= line_item.product.model_num %></td>
                     <td><%= line_item.quantity  %></td>
-                    <%#= raise "help" %>
-                    <td><%#= number_to_currency line_item.product.price %>
+                    <td>
                       <%= line_item.product.money_in(@current_user.currency).format %>
                     </td>
-                    <td><%= line_item.sub_total_in(@current_user.currency).format %></td>
-                    <% if @order.status.eql?'new' %>
-                      <td> <%= link_to 'Delete' , line_item_path(line_item), :method=> 'delete',:data => {:confirm => "Are you sure"}%>
+                    <td>
+                      <%= line_item.sub_total_in(@current_user.currency).format %>
                     </td>
+                    <% if @order.status.eql?'new' %>
+                      <td>
+                        <%= link_to 'Delete' , line_item_path(line_item), :method=> 'delete',:data => {:confirm => "Are you sure"}%>
+                      </td>
                     <% end %>
                 </tr>
                 <% i= i+1 %>
@@ -72,14 +74,12 @@ Stripe.card.createToken({
                     <td></td>
                     <td></td>
                     <td>Total</td>
-                    <%#= raise 'help' %>
                     <td><%= @order.total_in(@current_user.currency).format %></td>
                     <td></td>
                 </tr>
             </table>
         </div>
         <div>
-
             <div class=" col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
                 <% if ((@current_user.present?) && (@current_user.admin?)) %>
                 <%= link_to 'User Details' , @order.user %>
@@ -87,39 +87,36 @@ Stripe.card.createToken({
                 <%= link_to 'My Details' , @order.user %>
                 <% end %>
             </div>
-
         </div>
         <% if ((@order.status.eql?'new') && (@current_user.present?) && (@current_user.admin.eql?false))  %>
-        <div class="mode_of_payment">
-            <form action="/charge" method="POST" class="order_details">
-                <script
-                    src="https://checkout.stripe.com/checkout.js"
-                    class="stripe-button"
-                    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-                    data-amount="<%= (@order.total_price)*100  %>"
-                    data-name="Hello <%= @order.user.first_name %>"
-                    data-description="Pay Now"
-                    data-image="<%= @current_user.image %>"
-                    data-locale="auto">
-                </script>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col-xs-offset-3 col-xs-6 col-md-4 col-md-offset-4">
-                <%= button_to 'Confirm' ,order_status_path(:status=>'placed')  %>
-            </div>
-        </div>
+          <div class="mode_of_payment">
+              <form action="/charge" method="POST" class="order_details">
+                  <script
+                      src="https://checkout.stripe.com/checkout.js"
+                      class="stripe-button"
+                      data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+                      data-amount="<%= (@order.total_price)*100  %>"
+                      data-name="Hello <%= @order.user.first_name %>"
+                      data-description="Pay Now"
+                      data-image="<%= @current_user.image %>"
+                      data-locale="auto">
+                  </script>
+              </form>
+          </div>
+          <div class="row">
+              <div class="col-xs-offset-3 col-xs-6 col-md-4 col-md-offset-4">
+                  <%= button_to 'Confirm' ,order_status_path(:status=>'placed')  %>
+              </div>
+          </div>
         <% end %>
         <% if ((@current_user.present?) && (@current_user.admin?)) %>
-        <div class="row  col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
-            <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 actions">
-                <%= button_to 'Approve', order_status_path(:status=>'approved') , :class=> 'buttons col-md-6 col-xs-6'%>
-                <%= button_to 'Reject', order_status_path(:status=>'cancelled'), :class=> 'buttons col-md-6 col-xs-6'%>
-            </div>
-        </div>
-
+          <div class="row  col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
+              <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 actions">
+                  <%= button_to 'Approve', order_status_path(:status=>'approved') , :class=> 'buttons col-md-6 col-xs-6'%>
+                  <%= button_to 'Reject', order_status_path(:status=>'cancelled'), :class=> 'buttons col-md-6 col-xs-6'%>
+              </div>
+          </div>
         <% end %>
       </div>
-        <% end %>
-
+    <% end %>
 </div>

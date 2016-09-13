@@ -42,11 +42,9 @@ class LineItemsController < ApplicationController
   end
 
   def destroy
-    # @order = Order.find(params[:id])
     @line_item = LineItem.find(params[:id])
     @order = Order.find(@line_item.order.id)
     @line_item.destroy
-    # @line_items = @order.line_items
 
     redirect_to @order
   end

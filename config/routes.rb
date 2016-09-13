@@ -35,7 +35,6 @@
 Rails.application.routes.draw do
   root :to => 'pages#home'
   get '/orders/report' => 'orders#report' , :as => 'order_report'
-  # get '/orders/:from_date/:to_date' => 'orders#index' , :as => 'order_detail'
   resources :users
   resources :products
   resources :orders
@@ -50,7 +49,6 @@ Rails.application.routes.draw do
   get '/contact' => 'pages#contact' , :as => 'contact_us'
   get '/products/index/:category' => 'products#index', :as => 'product_category'
   get '/manage_products' => 'pages#products_home'
-  # get '/users/:id/edit' => 'users#edit' , :as => 'edit_user'
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'

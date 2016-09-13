@@ -8,23 +8,19 @@
         <%#= cloudinary_js_config %>
     </head>
     <body class="home_page">
-      <!-- <div class="container"> -->
-        <%= render :partial => 'layouts/header_form' %>
-        <% if flash[:notice] %>
-          <div class="alert alert-danger product_details" role="alert">
-            <%= flash[:notice] %>
-          </div>
-        <% end %>
-        <div class="body_section">
-          <%= yield %>
+      <%= render :partial => 'layouts/header_form' %>
+      <% if flash[:notice] %>
+        <div class="alert alert-danger product_details" role="alert">
+          <%= flash[:notice] %>
         </div>
-
-      <!-- </div> -->
+      <% end %>
+      <div class="body_section">
+        <%= yield %>
+      </div>
       <div class=footer_section>
         <footer class="footer">
             Copyrights reserved &copy; 2016
         </footer>
       </div>
     </body>
-
 </html>

@@ -8,7 +8,6 @@
   </ul>
 <% end %>
 <div class="col-xs-offset-4">
-  <%# raise "help" %>
     <%= form_for @product, :url => "/products/#{@product.id}", :html => {:multipart => true}  do |f| %>
     <fieldset>
         <%= f.label :'brand*'%>
@@ -16,7 +15,6 @@
     </fieldset>
     <fieldset>
         <%= f.label :'category*'%>
-        <%#= f.text_field :category %>
         <%= f.select :category,['Handset','Accessory'],:include_blank => true %>
     </fieldset>
     <fieldset>
@@ -41,9 +39,7 @@
     </fieldset>
     <fieldset>
         <%= f.label :image %>
-        <%#= cl_image_upload_tag :image %>
         <%= file_field_tag("photos[]", :multiple => true ) %>
-        <%#= f.submit 'submit', :class => 'submit' %>
     </fieldset>
     <%= render :partial => 'required_fields_form' %>
     <%= f.submit :class=> 'col-xs-offset-3'%>
