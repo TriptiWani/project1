@@ -38,8 +38,9 @@ Below listed are the features I would like to implement further to this:
 - Full fledged payment feature -- DONE
 - Conversion of currency based on user preference -- DONE
 - Password reset via mailer
-- GeoCoder, to track location of users
 - Order tracking in detail
+- GeoCoder, to track location of users
+- Give an option for the payment type, i.e. Cash/Credit/Debit
 - Code refactoring: The code looks bulky. Could be improved
 
 ## Link:
